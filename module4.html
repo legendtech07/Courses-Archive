@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 4: Python Operators | LegendTech</title>
+        <link rel="stylesheet" href="../styles/loader.css">
+    <link rel="stylesheet" href="../styles-main.css">
+    <link rel="icon" href="../assets-logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .module-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .module-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .module-header h1 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .module-intro {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .operator-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background-color: var(--light);
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+        
+        code {
+            background-color: rgba(44, 62, 80, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+        }
+        
+        .note {
+            background-color: rgba(52, 152, 219, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .warning {
+            background-color: rgba(231, 76, 60, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .tip {
+            background-color: rgba(39, 174, 96, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--success);
+        }
+        
+        /* Python Editor Styles */
+        .python-editor {
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 30px 0;
+            border: 1px solid #e1e4e8;
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #3776ab 0%, #306998 100%);
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .editor-header h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .editor-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .editor-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+        
+        .run-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .run-btn:hover {
+            background-color: #218838;
+        }
+        
+        .reset-btn, .clear-btn {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .reset-btn:hover, .clear-btn:hover {
+            background-color: #e9ecef;
+        }
+        
+        .editor-container {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (min-width: 768px) {
+            .editor-container {
+                flex-direction: row;
+                height: 300px;
+            }
+        }
+        
+        .code-area, .output-area {
+            flex: 1;
+            position: relative;
+        }
+        
+        .code-area {
+            border-right: 1px solid #e1e4e8;
+        }
+        
+        #python-code {
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: none;
+            resize: none;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            background-color: #f6f8fa;
+            color: #24292e;
+            tab-size: 4;
+        }
+        
+        .output-area {
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .output-header {
+            padding: 8px 15px;
+            background-color: #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        #output {
+            flex: 1;
+            padding: 15px;
+            margin: 0;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .editor-footer {
+            padding: 8px 15px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e1e4e8;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .challenge {
+            background-color: rgba(41, 128, 185, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid #2980b9;
+        }
+        
+        .recap {
+            background-color: rgba(44, 62, 80, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .quiz {
+            background-color: rgba(155, 89, 182, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid #9b59b6;
+        }
+        
+        .quiz-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .quiz-option {
+            margin: 8px 0;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .quiz-option:hover {
+            background-color: rgba(155, 89, 182, 0.2);
+        }
+        
+        .quiz-feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .correct {
+            background-color: rgba(39, 174, 96, 0.2);
+            border-left: 4px solid var(--success);
+        }
+        
+        .incorrect {
+            background-color: rgba(231, 76, 60, 0.2);
+            border-left: 4px solid var(--accent);
+        }
+    </style>
+</head>
+<body>
+        <!-- Animated Loader -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-text">Loading module 2</div>
+        </div>
+    </div>
+    <div class="module-container">
+        <div class="module-header">
+            <h1><i class="fas fa-calculator"></i> Module 4: Python Operators</h1>
+            <div class="course-meta">
+                <span><i class="fas fa-modules"></i> 12 Modules</span>
+                <span><i class="fas fa-clock"></i> 15 Hours</span>
+                <span><i class="fas fa-level-up-alt"></i> Beginner to Advanced</span>
+            </div>
+        </div>
+        <div class="course-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 8%;"></div>
+            </div>
+            <span>8% Complete</span>
+        </div>
+        </div>
+        
+        <div class="module-intro">
+            <p>Operators are special symbols or keywords that perform operations on variables and values. Python provides various types of operators to perform calculations, comparisons, logical tests, and more. Mastering operators is essential for writing efficient and expressive Python code.</p>
+        </div>
+        
+        <!-- Arithmetic Operators -->
+        <div class="operator-section">
+            <h2><i class="fas fa-plus-circle"></i> 1. Arithmetic Operators</h2>
+            <p>Used for mathematical operations between numeric values:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Name</th>
+                        <th>Example</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>+</code></td>
+                        <td>Addition</td>
+                        <td><code>3 + 2</code></td>
+                        <td><code>5</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>-</code></td>
+                        <td>Subtraction</td>
+                        <td><code>5 - 2</code></td>
+                        <td><code>3</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>*</code></td>
+                        <td>Multiplication</td>
+                        <td><code>4 * 3</code></td>
+                        <td><code>12</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>/</code></td>
+                        <td>Division</td>
+                        <td><code>10 / 2</code></td>
+                        <td><code>5.0</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>//</code></td>
+                        <td>Floor Division</td>
+                        <td><code>10 // 3</code></td>
+                        <td><code>3</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>%</code></td>
+                        <td>Modulus (Remainder)</td>
+                        <td><code>10 % 3</code></td>
+                        <td><code>1</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>**</code></td>
+                        <td>Exponent</td>
+                        <td><code>2 ** 3</code></td>
+                        <td><code>8</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="note">
+                <p><strong>Note:</strong> The <code>/</code> operator always returns a float. Use <code>//</code> for integer division.</p>
+            </div>
+            
+            <div class="python-editor">
+                <div class="editor-header">
+                    <h3><i class="fab fa-python"></i> Arithmetic Practice</h3>
+                    <div class="editor-actions">
+                        <button id="arithmetic-run-btn" class="editor-btn run-btn">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <button id="arithmetic-reset-btn" class="editor-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="code-area">
+                        <textarea id="arithmetic-code" spellcheck="false"># Try different arithmetic operations
+a = 15
+b = 4
+
+print("Addition:", a + b)
+print("Subtraction:", a - b)
+print("Multiplication:", a * b)
+print("Division:", a / b)
+print("Floor Division:", a // b)
+print("Modulus:", a % b)
+print("Exponent:", a ** 2)</textarea>
+                    </div>
+                    <div class="output-area">
+                        <div class="output-header">
+                            <span>Output:</span>
+                            <button id="arithmetic-clear-btn" class="editor-btn clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="arithmetic-output"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                <!-- Comparison Operators -->
+        <div class="operator-section">
+            <h2><i class="fas fa-balance-scale"></i> 2. Comparison Operators</h2>
+            <p>Used to compare two values. These return <code>True</code> or <code>False</code>:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>==</code></td>
+                        <td>Equal to</td>
+                        <td><code>5 == 5</code></td>
+                        <td><code>True</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>!=</code></td>
+                        <td>Not equal to</td>
+                        <td><code>4 != 5</code></td>
+                        <td><code>True</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>></code></td>
+                        <td>Greater than</td>
+                        <td><code>5 > 2</code></td>
+                        <td><code>True</code></td>
+                    </tr>
+                    <tr>
+                        <td><code><</code></td>
+                        <td>Less than</td>
+                        <td><code>3 < 4</code></td>
+                        <td><code>True</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>>=</code></td>
+                        <td>Greater than or equal to</td>
+                        <td><code>5 >= 5</code></td>
+                        <td><code>True</code></td>
+                    </tr>
+                    <tr>
+                        <td><code><=</code></td>
+                        <td>Less than or equal to</td>
+                        <td><code>2 <= 3</code></td>
+                        <td><code>True</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="tip">
+                <p><strong>Tip:</strong> Comparison operators are commonly used in <code>if</code> statements and loops to control program flow.</p>
+            </div>
+            
+            <div class="python-editor">
+                <div class="editor-header">
+                    <h3><i class="fab fa-python"></i> Comparison Practice</h3>
+                    <div class="editor-actions">
+                        <button id="comparison-run-btn" class="editor-btn run-btn">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <button id="comparison-reset-btn" class="editor-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="code-area">
+                        <textarea id="comparison-code" spellcheck="false"># Experiment with comparison operators
+x = 10
+y = 7
+
+print("x == y:", x == y)
+print("x != y:", x != y)
+print("x > y:", x > y)
+print("x < y:", x < y)
+print("x >= 10:", x >= 10)
+print("y <= 5:", y <= 5)
+
+# Using in if statement
+if x > y:
+    print("x is greater than y")
+else:
+    print("x is not greater than y")</textarea>
+                    </div>
+                    <div class="output-area">
+                        <div class="output-header">
+                            <span>Output:</span>
+                            <button id="comparison-clear-btn" class="editor-btn clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="comparison-output"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Assignment Operators -->
+        <div class="operator-section">
+            <h2><i class="fas fa-equals"></i> 3. Assignment Operators</h2>
+            <p>Used to assign values to variables and update them:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Example</th>
+                        <th>Equivalent To</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>=</code></td>
+                        <td><code>x = 5</code></td>
+                        <td><code>x = 5</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>+=</code></td>
+                        <td><code>x += 2</code></td>
+                        <td><code>x = x + 2</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>-=</code></td>
+                        <td><code>x -= 3</code></td>
+                        <td><code>x = x - 3</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>*=</code></td>
+                        <td><code>x *= 4</code></td>
+                        <td><code>x = x * 4</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>/=</code></td>
+                        <td><code>x /= 2</code></td>
+                        <td><code>x = x / 2</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>//=</code></td>
+                        <td><code>x //= 2</code></td>
+                        <td><code>x = x // 2</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>%=</code></td>
+                        <td><code>x %= 2</code></td>
+                        <td><code>x = x % 2</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>**=</code></td>
+                        <td><code>x **= 3</code></td>
+                        <td><code>x = x ** 3</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="note">
+                <p><strong>Note:</strong> Assignment operators provide a shorthand way to update variables based on their current value.</p>
+            </div>
+            
+            <div class="python-editor">
+                <div class="editor-header">
+                    <h3><i class="fab fa-python"></i> Assignment Practice</h3>
+                    <div class="editor-actions">
+                        <button id="assignment-run-btn" class="editor-btn run-btn">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <button id="assignment-reset-btn" class="editor-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="code-area">
+                        <textarea id="assignment-code" spellcheck="false"># Try different assignment operators
+x = 10
+print("Original x:", x)
+
+x += 5  # Equivalent to x = x + 5
+print("After x += 5:", x)
+
+x -= 3  # Equivalent to x = x - 3
+print("After x -= 3:", x)
+
+x *= 2  # Equivalent to x = x * 2
+print("After x *= 2:", x)
+
+x /= 4  # Equivalent to x = x / 4
+print("After x /= 4:", x)
+
+x **= 3  # Equivalent to x = x ** 3
+print("After x **= 3:", x)</textarea>
+                    </div>
+                    <div class="output-area">
+                        <div class="output-header">
+                            <span>Output:</span>
+                            <button id="assignment-clear-btn" class="editor-btn clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="assignment-output"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Logical Operators -->
+        <div class="operator-section">
+            <h2><i class="fas fa-project-diagram"></i> 4. Logical Operators</h2>
+            <p>Used to combine multiple conditions:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>and</code></td>
+                        <td>True if both conditions are true</td>
+                        <td><code>x > 2 and x < 10</code></td>
+                        <td><code>True</code> if x is between 2 and 10</td>
+                    </tr>
+                    <tr>
+                        <td><code>or</code></td>
+                        <td>True if at least one condition is true</td>
+                        <td><code>x < 5 or x > 10</code></td>
+                        <td><code>True</code> if x is less than 5 OR greater than 10</td>
+                    </tr>
+                    <tr>
+                        <td><code>not</code></td>
+                        <td>Reverses the result</td>
+                        <td><code>not(x > 3)</code></td>
+                        <td><code>True</code> if x is NOT greater than 3</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="warning">
+                <p><strong>Remember:</strong> Python uses short-circuit evaluation for logical operators. With <code>and</code>, if the first condition is false, the second won't be evaluated. With <code>or</code>, if the first is true, the second won't be evaluated.</p>
+            </div>
+            
+                        <div class="python-editor">
+                <div class="editor-header">
+                    <h3><i class="fab fa-python"></i> Logical Practice</h3>
+                    <div class="editor-actions">
+                        <button id="logical-run-btn" class="editor-btn run-btn">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <button id="logical-reset-btn" class="editor-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="code-area">
+                        <textarea id="logical-code" spellcheck="false"># Experiment with logical operators
+age = 25
+has_license = True
+
+# AND operator
+if age >= 18 and has_license:
+    print("You can drive!")
+else:
+    print("You cannot drive.")
+
+# OR operator
+if age < 5 or age > 65:
+    print("You get a discount!")
+
+# NOT operator
+if not has_license:
+    print("You need to get a license first.")
+
+# Combined example
+temperature = 22
+is_weekend = False
+
+if temperature > 25 and is_weekend:
+    print("Great beach weather!")
+elif temperature > 25 or is_weekend:
+    print("Good weather, but not perfect for beach")
+else:
+    print("Maybe stay indoors")</textarea>
+                    </div>
+                    <div class="output-area">
+                        <div class="output-header">
+                            <span>Output:</span>
+                            <button id="logical-clear-btn" class="editor-btn clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="logical-output"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Identity and Membership Operators -->
+        <div class="operator-section">
+            <h2><i class="fas fa-fingerprint"></i> 5. Identity & Membership Operators</h2>
+            
+            <h3><i class="fas fa-id-card"></i> Identity Operators</h3>
+            <p>Used to compare object identities (memory addresses):</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>is</code></td>
+                        <td>True if both variables are the same object</td>
+                        <td><code>x is y</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>is not</code></td>
+                        <td>True if both variables are not the same object</td>
+                        <td><code>x is not y</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="note">
+                <p><strong>Note:</strong> <code>is</code> checks for identity (same object), while <code>==</code> checks for equality (same value).</p>
+            </div>
+            
+            <h3><i class="fas fa-search"></i> Membership Operators</h3>
+            <p>Used to test if a value exists in a sequence (list, tuple, string, etc.):</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>in</code></td>
+                        <td>True if value exists in sequence</td>
+                        <td><code>"a" in "apple"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>not in</code></td>
+                        <td>True if value doesn't exist in sequence</td>
+                        <td><code>"z" not in "apple"</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="python-editor">
+                <div class="editor-header">
+                    <h3><i class="fab fa-python"></i> Identity & Membership Practice</h3>
+                    <div class="editor-actions">
+                        <button id="identity-run-btn" class="editor-btn run-btn">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <button id="identity-reset-btn" class="editor-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="code-area">
+                        <textarea id="identity-code" spellcheck="false"># Identity operators
+x = ["apple", "banana"]
+y = ["apple", "banana"]
+z = x
+
+print("x is y:", x is y)  # False - different objects
+print("x is z:", x is z)  # True - same object
+print("x == y:", x == y)  # True - same content
+
+# Membership operators
+fruits = ["apple", "banana", "cherry"]
+print("'banana' in fruits:", "banana" in fruits)
+print("'mango' not in fruits:", "mango" not in fruits)
+
+# String membership
+text = "Hello LegendTech"
+print("'Tech' in text:", "Tech" in text)
+print("'Python' not in text:", "Python" not in text)</textarea>
+                    </div>
+                    <div class="output-area">
+                        <div class="output-header">
+                            <span>Output:</span>
+                            <button id="identity-clear-btn" class="editor-btn clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="identity-output"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Challenge Section -->
+        <div class="challenge">
+            <h2><i class="fas fa-tasks"></i> Coding Challenge</h2>
+            <p>Create a program that:</p>
+            <ol>
+                <li>Calculates the area of a rectangle (length × width)</li>
+                <li>Checks if the area is greater than 100 and prints a message</li>
+                <li>Uses at least one assignment operator</li>
+                <li>Uses both logical and comparison operators</li>
+            </ol>
+            
+            <div class="python-editor">
+                <div class="editor-header">
+                    <h3><i class="fab fa-python"></i> Challenge Editor</h3>
+                    <div class="editor-actions">
+                        <button id="challenge-run-btn" class="editor-btn run-btn">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <button id="challenge-reset-btn" class="editor-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="code-area">
+                        <textarea id="challenge-code" spellcheck="false"># Complete the challenge here
+length = 15
+width = 8
+
+# Calculate area
+area = length * width
+
+# Check if area is large
+if area > 100:
+    print(f"Large area: {area}")
+else:
+    print(f"Area: {area}")
+
+# Bonus: Update dimensions using assignment operators
+length += 5
+width *= 1.5
+new_area = length * width
+
+print(f"Updated area: {new_area}")
+if new_area > 150 or (length > 20 and width > 10):
+    print("This is now a very large area!")</textarea>
+                    </div>
+                    <div class="output-area">
+                        <div class="output-header">
+                            <span>Output:</span>
+                            <button id="challenge-clear-btn" class="editor-btn clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="challenge-output"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quiz Section -->
+        <div class="quiz">
+            <h2><i class="fas fa-question-circle"></i> Quick Quiz</h2>
+            
+            <div class="quiz-question">1. What does the <code>//=</code> operator do?</div>
+            <div class="quiz-option" onclick="checkAnswer(this, 'correct', 'Performs floor division and assigns the result')">Performs floor division and assigns the result</div>
+            <div class="quiz-option" onclick="checkAnswer(this, 'incorrect', 'Performs regular division')">Performs regular division</div>
+            <div class="quiz-option" onclick="checkAnswer(this, 'incorrect', 'Checks for equality')">Checks for equality</div>
+            <div class="quiz-feedback" id="feedback1"></div>
+            
+            <div class="quiz-question">2. Which operator would you use to check if a value is NOT in a list?</div>
+            <div class="quiz-option" onclick="checkAnswer(this, 'incorrect', 'is not')">is not</div>
+            <div class="quiz-option" onclick="checkAnswer(this, 'correct', 'not in')">not in</div>
+            <div class="quiz-option" onclick="checkAnswer(this, 'incorrect', '!=')">!=</div>
+            <div class="quiz-feedback" id="feedback2"></div>
+            
+            <div class="quiz-question">3. What is the result of <code>5 ** 2</code>?</div>
+            <div class="quiz-option" onclick="checkAnswer(this, 'incorrect', '10')">10</div>
+            <div class="quiz-option" onclick="checkAnswer(this, 'correct', '25')">25</div>
+            <div class="quiz-option" onclick="checkAnswer(this, 'incorrect', '7')">7</div>
+            <div class="quiz-feedback" id="feedback3"></div>
+        </div>
+        
+        <!-- Recap Section -->
+        <div class="recap">
+            <h2><i class="fas fa-clipboard-list"></i> Key Takeaways</h2>
+            <ul>
+                <li>Python provides various operators for different purposes: arithmetic, comparison, assignment, logical, identity, and membership.</li>
+                <li>Arithmetic operators (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, etc.) perform mathematical calculations.</li>
+                <li>Comparison operators (<code>==</code>, <code>!=</code>, <code>></code>, etc.) compare values and return <code>True</code> or <code>False</code>.</li>
+                <li>Assignment operators (<code>=</code>, <code>+=</code>, <code>-=</code>, etc.) assign and update variable values.</li>
+                <li>Logical operators (<code>and</code>, <code>or</code>, <code>not</code>) combine multiple conditions.</li>
+                <li>Identity operators (<code>is</code>, <code>is not</code>) check if objects are the same.</li>
+                <li>Membership operators (<code>in</code>, <code>not in</code>) check if values exist in sequences.</li>
+                <li>Understanding operators is crucial for writing effective conditions and expressions in Python.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="module-navigation">
+                        <span class="nav-btn disabled"><i class="fas fa-arrow-left"></i> Previous</span>
+                        <div class="progress-indicator">Module 4 of 12</div>
+                        <a href="module5.html" class="nav-btn">Next: Python Conditional Statements<i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+        </div>
+        
+    
+        <script>
+        // Initialize Pyodide
+        async function initPyodide() {
+            let pyodide = await loadPyodide({
+                indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
+            });
+            return pyodide;
+        }
+
+        // Editor management
+        class PythonEditor {
+            constructor(codeId, outputId, runBtnId, resetBtnId, clearBtnId, defaultCode) {
+                this.codeElement = document.getElementById(codeId);
+                this.outputElement = document.getElementById(outputId);
+                this.runBtn = document.getElementById(runBtnId);
+                this.resetBtn = document.getElementById(resetBtnId);
+                this.clearBtn = document.getElementById(clearBtnId);
+                this.defaultCode = defaultCode;
+                this.pyodide = null;
+                this.initialized = false;
+                
+                this.setupEvents();
+                this.resetEditor(false);
+            }
+            
+            async initialize() {
+                if (!this.initialized) {
+                    this.outputElement.textContent = "Loading Python runtime...\n";
+                    this.pyodide = await initPyodide();
+                    this.outputElement.textContent += "Python ready! Try running your code.\n";
+                    this.initialized = true;
+                }
+            }
+            
+            setupEvents() {
+                this.runBtn.addEventListener('click', () => this.runCode());
+                this.resetBtn.addEventListener('click', () => this.resetEditor());
+                this.clearBtn.addEventListener('click', () => this.clearOutput());
+            }
+            
+            async runCode() {
+                await this.initialize();
+                const code = this.codeElement.value;
+                
+                this.outputElement.textContent += ">>> Running your code...\n";
+                
+                try {
+                    let result = await this.pyodide.runPythonAsync(code);
+                    if (result !== undefined) {
+                        this.outputElement.textContent += String(result) + "\n";
+                    }
+                    this.outputElement.textContent += ">>> Execution complete.\n";
+                } catch (error) {
+                    this.outputElement.textContent += `Error: ${error.message}\n`;
+                }
+                
+                this.outputElement.scrollTop = this.outputElement.scrollHeight;
+            }
+            
+            resetEditor(confirm = true) {
+                if (!confirm || window.confirm("Reset code to default example?")) {
+                    this.codeElement.value = this.defaultCode;
+                    this.clearOutput();
+                }
+            }
+            
+            clearOutput() {
+                this.outputElement.textContent = "";
+            }
+        }
+
+        // Quiz functionality
+        function checkAnswer(element, result, correctText) {
+            const feedbackId = "feedback" + element.parentElement.querySelector('.quiz-question').textContent.match(/\d+/)[0];
+            const feedbackElement = document.getElementById(feedbackId);
+            
+            // Reset all options in this question
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.style.backgroundColor = '';
+            });
+            
+            if (result === 'correct') {
+                element.style.backgroundColor = 'rgba(39, 174, 96, 0.3)';
+                feedbackElement.textContent = "✅ Correct! " + correctText;
+                feedbackElement.className = "quiz-feedback correct";
+            } else {
+                element.style.backgroundColor = 'rgba(231, 76, 60, 0.3)';
+                feedbackElement.textContent = "❌ Incorrect. The correct answer is: " + correctText;
+                feedbackElement.className = "quiz-feedback incorrect";
+            }
+            
+            feedbackElement.style.display = "block";
+        }
+
+        // Initialize editors when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Arithmetic editor
+            new PythonEditor(
+                'arithmetic-code',
+                'arithmetic-output',
+                'arithmetic-run-btn',
+                'arithmetic-reset-btn',
+                'arithmetic-clear-btn',
+                `# Try different arithmetic operations
+a = 15
+b = 4
+
+print("Addition:", a + b)
+print("Subtraction:", a - b)
+print("Multiplication:", a * b)
+print("Division:", a / b)
+print("Floor Division:", a // b)
+print("Modulus:", a % b)
+print("Exponent:", a ** 2)`
+            );
+            
+            // Comparison editor
+            new PythonEditor(
+                'comparison-code',
+                'comparison-output',
+                'comparison-run-btn',
+                'comparison-reset-btn',
+                'comparison-clear-btn',
+                `# Experiment with comparison operators
+x = 10
+y = 7
+
+print("x == y:", x == y)
+print("x != y:", x != y)
+print("x > y:", x > y)
+print("x < y:", x < y)
+print("x >= 10:", x >= 10)
+print("y <= 5:", y <= 5)
+
+# Using in if statement
+if x > y:
+    print("x is greater than y")
+else:
+    print("x is not greater than y")`
+            );
+            
+            // Assignment editor
+            new PythonEditor(
+                'assignment-code',
+                'assignment-output',
+                'assignment-run-btn',
+                'assignment-reset-btn',
+                'assignment-clear-btn',
+                `# Try different assignment operators
+x = 10
+print("Original x:", x)
+
+x += 5  # Equivalent to x = x + 5
+print("After x += 5:", x)
+
+x -= 3  # Equivalent to x = x - 3
+print("After x -= 3:", x)
+
+x *= 2  # Equivalent to x = x * 2
+print("After x *= 2:", x)
+
+x /= 4  # Equivalent to x = x / 4
+print("After x /= 4:", x)
+
+x **= 3  # Equivalent to x = x ** 3
+print("After x **= 3:", x)`
+            );
+            
+            // Logical editor
+            new PythonEditor(
+                'logical-code',
+                'logical-output',
+                'logical-run-btn',
+                'logical-reset-btn',
+                'logical-clear-btn',
+                `# Experiment with logical operators
+age = 25
+has_license = True
+
+# AND operator
+if age >= 18 and has_license:
+    print("You can drive!")
+else:
+    print("You cannot drive.")
+
+# OR operator
+if age < 5 or age > 65:
+    print("You get a discount!")
+
+# NOT operator
+if not has_license:
+    print("You need to get a license first.")
+
+# Combined example
+temperature = 22
+is_weekend = False
+
+if temperature > 25 and is_weekend:
+    print("Great beach weather!")
+elif temperature > 25 or is_weekend:
+    print("Good weather, but not perfect for beach")
+else:
+    print("Maybe stay indoors")`
+            );
+            
+            // Identity editor
+            new PythonEditor(
+                'identity-code',
+                'identity-output',
+                'identity-run-btn',
+                'identity-reset-btn',
+                'identity-clear-btn',
+                `# Identity operators
+x = ["apple", "banana"]
+y = ["apple", "banana"]
+z = x
+
+print("x is y:", x is y)  # False - different objects
+print("x is z:", x is z)  # True - same object
+print("x == y:", x == y)  # True - same content
+
+# Membership operators
+fruits = ["apple", "banana", "cherry"]
+print("'banana' in fruits:", "banana" in fruits)
+print("'mango' not in fruits:", "mango" not in fruits)
+
+# String membership
+text = "Hello LegendTech"
+print("'Tech' in text:", "Tech" in text)
+print("'Python' not in text:", "Python" not in text)`
+            );
+            
+            // Challenge editor
+            new PythonEditor(
+                'challenge-code',
+                'challenge-output',
+                'challenge-run-btn',
+                'challenge-reset-btn',
+                'challenge-clear-btn',
+                `# Complete the challenge here
+length = 15
+width = 8
+
+# Calculate area
+area = length * width
+
+# Check if area is large
+if area > 100:
+    print(f"Large area: {area}")
+else:
+    print(f"Area: {area}")
+
+# Bonus: Update dimensions using assignment operators
+length += 5
+width *= 1.5
+new_area = length * width
+
+print(f"Updated area: {new_area}")
+if new_area > 150 or (length > 20 and width > 10):
+    print("This is now a very large area!")`
+            );
+        });
+    </script>
+    
+    <!-- Load Pyodide -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    
+    <script src="../script-main.js"></script>
+</body>
+</html>

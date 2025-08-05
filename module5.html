@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 5: Conditional Statements | LegendTech</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../assets-logo.png">
+    <link rel="stylesheet" href="../styles-main.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .module-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .module-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .module-header h1 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .module-intro {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .concept-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin-top: 20px;
+        }
+        
+        pre {
+            background-color: #f6f8fa;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            border-left: 3px solid var(--secondary);
+        }
+        
+        code {
+            background-color: rgba(44, 62, 80, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+        }
+        
+        .note {
+            background-color: rgba(52, 152, 219, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .warning {
+            background-color: rgba(231, 76, 60, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .tip {
+            background-color: rgba(39, 174, 96, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--success);
+        }
+        
+        /* Enhanced Python Editor Styles */
+        .python-editor {
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 30px 0;
+            border: 1px solid #e1e4e8;
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #3776ab 0%, #306998 100%);
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .editor-header h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .editor-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .editor-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+        
+        .run-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .run-btn:hover {
+            background-color: #218838;
+        }
+        
+        .reset-btn, .clear-btn {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .reset-btn:hover, .clear-btn:hover {
+            background-color: #e9ecef;
+        }
+        
+        .editor-container {
+            display: flex;
+            flex-direction: column;
+            height: 200px; /* Larger editor space */
+        }
+        
+        @media (min-width: 768px) {
+            .editor-container {
+                flex-direction: row;
+            }
+        }
+        
+        .code-area, .output-area {
+            flex: 1;
+            position: relative;
+        }
+        
+        .code-area {
+            border-right: 1px solid #e1e4e8;
+        }
+        
+        #python-code {
+            width: 100%;
+            height: 100%;
+            min-height: 300px; /* Taller editor */
+            padding: 15px;
+            border: none;
+            resize: none;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            background-color: #f6f8fa;
+            color: #24292e;
+            tab-size: 4;
+        }
+        
+        .output-area {
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .output-header {
+            padding: 8px 15px;
+            background-color: #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        #output {
+            flex: 1;
+            padding: 15px;
+            margin: 0;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .editor-footer {
+            padding: 8px 15px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e1e4e8;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .challenge {
+            background-color: rgba(41, 128, 185, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid #2980b9;
+        }
+        
+        .recap {
+            background-color: rgba(44, 62, 80, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .flowchart {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .flowchart img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .comparison-table th {
+            background-color: var(--light);
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+        
+        .real-world {
+            background-color: rgba(243, 156, 18, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--warning);
+        }
+    </style>
+</head>
+<body>
+            <!-- Animated Loader -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-text">Loading module 2</div>
+        </div>
+    </div>
+    <div class="module-container">
+        <div class="module-header">
+            <h1><i class="fas fa-code-branch"></i> Module 5: Conditional Statements in Python</h1>
+            <div class="course-meta">
+                <span><i class="fas fa-modules"></i> 12 Modules</span>
+                <span><i class="fas fa-clock"></i> 15 Hours</span>
+                <span><i class="fas fa-level-up-alt"></i> Beginner to Advanced</span>
+            </div>
+        </div>
+        <div class="course-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 8%;"></div>
+            </div>
+            <span>8% Complete</span>
+        </div>
+        </div>
+        
+        <div class="module-intro">
+            <p>Conditional statements allow your program to make decisions and execute different code blocks based on whether conditions are <code>True</code> or <code>False</code>. This is fundamental for creating dynamic, responsive programs that can handle different situations.</p>
+        </div>
+        
+        <!-- if Statement -->
+        <div class="concept-section">
+            <h2><i class="fas fa-check-circle"></i> 1. The <code>if</code> Statement</h2>
+            <p>The most basic conditional statement. Code inside the <code>if</code> block only runs if the condition is <code>True</code>.</p>
+            
+            <pre><code># Basic if statement syntax
+if condition:
+    # Code to run if condition is True</code></pre>
+            
+            <div class="python-editor">
+                <div class="editor-header">
+                    <h3><i class="fab fa-python"></i> Try It: if Statement</h3>
+                    <div class="editor-actions">
+                        <button id="if-run-btn" class="editor-btn run-btn">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <button id="if-reset-btn" class="editor-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="code-area">
+                        <textarea id="if-code" spellcheck="false"># Change the temperature value to see different outputs
+temperature = 25
+
+if temperature > 30:
+    print("It's a hot day!")
+    print("Remember to drink water")
+
+print("This line always executes")</textarea>
+                    </div>
+                    <div class="output-area">
+                        <div class="output-header">
+                            <span>Output:</span>
+                            <button id="if-clear-btn" class="editor-btn clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="if-output"></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="note">
+                <p><strong>Note:</strong> Python uses indentation (spaces or tabs) to define code blocks. The standard is 4 spaces per indentation level.</p>
+            </div>
+        </div>
+        
+        <!-- if...else Statement -->
+        <div class="concept-section">
+            <h2><i class="fas fa-random"></i> 2. The <code>if...else</code> Statement</h2>
+            <p>Use <code>else</code> to specify code that should run when the <code>if</code> condition is <code>False</code>.</p>
+            
+            <pre><code># if...else syntax
+if condition:
+    # Code if True
+else:
+    # Code if False</code></pre>
+            
+            <div class="python-editor">
+                <div class="editor-header">
+                    <h3><i class="fab fa-python"></i> Try It: if...else</h3>
+                    <div class="editor-actions">
+                        <button id="ifelse-run-btn" class="editor-btn run-btn">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <button id="ifelse-reset-btn" class="editor-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="code-area">
+                        <textarea id="ifelse-code" spellcheck="false"># Change the age value to see different messages
+age = 17
+
+if age >= 18:
+    print("You are eligible to vote!")
+    print("Please register if you haven't")
+else:
+    years_left = 18 - age
+    print(f"Sorry, you can't vote yet. Come back in {years_left} year(s)")
+
+print("Voting is important!")</textarea>
+                    </div>
+                    <div class="output-area">
+                        <div class="output-header">
+                            <span>Output:</span>
+                            <button id="ifelse-clear-btn" class="editor-btn clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="ifelse-output"></pre>
+                    </div>
+                </div>
+            </div>
+    
+    <div class="tip">
+                <p><strong>Tip:</strong> The <code>else</code> clause catches all cases where the <code>if</code> condition is <code>False</code>. It's your "catch-all" for the opposite condition.</p>
+            </div>
+        </div>
+        
+        <!-- elif Statement -->
+        <div class="concept-section">
+            <h2><i class="fas fa-sitemap"></i> 3. The <code>elif</code> Statement</h2>
+            <p><code>elif</code> (short for "else if") lets you check multiple conditions in sequence.</p>
+            
+            <pre><code># if...elif...else syntax
+if condition1:
+    # Code if condition1 is True
+elif condition2:
+    # Code if condition2 is True
+else:
+    # Code if all above are False</code></pre>
+            
+            <div class="flowchart">
+                <h3>Conditional Flow</h3>
+                <img src="https://www.tutorialspoint.com/python/images/decision_making.jpg" alt="Conditional flowchart" style="max-width: 500px;">
+                <p>Python checks conditions in order until one is <code>True</code>, then skips the rest.</p>
+            </div>
+            
+            <div class="python-editor">
+                <div class="editor-header">
+                    <h3><i class="fab fa-python"></i> Try It: elif</h3>
+                    <div class="editor-actions">
+                        <button id="elif-run-btn" class="editor-btn run-btn">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <button id="elif-reset-btn" class="editor-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="code-area">
+                        <textarea id="elif-code" spellcheck="false"># Change the score to see different grades
+score = 85
+
+if score >= 90:
+    print("Grade: A")
+    print("Excellent work!")
+elif score >= 80:
+    print("Grade: B")
+    print("Good job!")
+elif score >= 70:
+    print("Grade: C")
+    print("You passed")
+elif score >= 60:
+    print("Grade: D")
+    print("You barely passed")
+else:
+    print("Grade: F")
+    print("You failed")
+
+print("Study hard!")</textarea>
+                    </div>
+                    <div class="output-area">
+                        <div class="output-header">
+                            <span>Output:</span>
+                            <button id="elif-clear-btn" class="editor-btn clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="elif-output"></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="warning">
+                <p><strong>Important:</strong> Python will execute the first condition that evaluates to <code>True</code> and skip all subsequent <code>elif</code> and <code>else</code> blocks, even if they would also be <code>True</code>.</p>
+            </div>
+        </div>
+        
+        <!-- Nested Conditionals -->
+        <div class="concept-section">
+            <h2><i class="fas fa-layer-group"></i> 4. Nested Conditionals</h2>
+            <p>You can place <code>if</code> statements inside other <code>if</code> statements to create more complex logic.</p>
+            
+            <pre><code># Nested if example
+if outer_condition:
+    if inner_condition:
+        # Both conditions are True
+    else:
+        # Outer True, Inner False
+else:
+    # Outer condition False</code></pre>
+            
+            <div class="python-editor">
+                <div class="editor-header">
+                    <h3><i class="fab fa-python"></i> Try It: Nested Conditionals</h3>
+                    <div class="editor-actions">
+                        <button id="nested-run-btn" class="editor-btn run-btn">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <button id="nested-reset-btn" class="editor-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="code-area">
+                        <textarea id="nested-code" spellcheck="false"># Try different combinations of age and has_permission
+age = 15
+has_permission = False
+
+if age >= 13:
+    print("You meet the age requirement")
+    
+    if has_permission:
+        print("You can create an account")
+    else:
+        print("You need parental permission")
+else:
+    print("You're too young to register")
+
+print("Thanks for your interest")</textarea>
+                    </div>
+                    <div class="output-area">
+                        <div class="output-header">
+                            <span>Output:</span>
+                            <button id="nested-clear-btn" class="editor-btn clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="nested-output"></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="note">
+                <p><strong>Readability Tip:</strong> While nested conditionals are powerful, deep nesting (more than 2-3 levels) can make code hard to read. Consider using logical operators or separate functions for complex conditions.</p>
+            </div>
+        </div>
+        
+        <!-- Logical Operators -->
+        <div class="concept-section">
+            <h2><i class="fas fa-link"></i> 5. Logical Operators in Conditionals</h2>
+            <p>Combine multiple conditions using logical operators:</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                        <th>When True</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>and</code></td>
+                        <td>Logical AND</td>
+                        <td><code>x > 5 and x < 10</code></td>
+                        <td>Both conditions are True</td>
+                    </tr>
+                    <tr>
+                        <td><code>or</code></td>
+                        <td>Logical OR</td>
+                        <td><code>x < 5 or x > 10</code></td>
+                        <td>At least one condition is True</td>
+                    </tr>
+                    <tr>
+                        <td><code>not</code></td>
+                        <td>Logical NOT</td>
+                        <td><code>not x > 5</code></td>
+                        <td>The condition is False</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="python-editor">
+                <div class="editor-header">
+                    <h3><i class="fab fa-python"></i> Try It: Logical Operators</h3>
+                    <div class="editor-actions">
+                        <button id="logical-run-btn" class="editor-btn run-btn">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <button id="logical-reset-btn" class="editor-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="code-area">
+                        <textarea id="logical-code" spellcheck="false"># Experiment with different values for age and is_member
+age = 25
+is_member = True
+
+# Using AND
+if age >= 18 and is_member:
+    print("You get full access!")
+else:
+    print("Access restricted")
+
+# Using OR
+if age < 12 or age >= 65:
+    print("You qualify for a discount")
+
+# Using NOT
+if not is_member:
+    print("Consider joining for benefits")
+
+# Combined example
+temperature = 22
+is_weekend = True
+has_umbrella = False
+
+if (temperature > 25 or is_weekend) and not has_umbrella:
+    print("Perfect weather for going out!")
+else:
+    print("Maybe stay indoors")</textarea>
+                    </div>
+                    <div class="output-area">
+                        <div class="output-header">
+                            <span>Output:</span>
+                            <button id="logical-clear-btn" class="editor-btn clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="logical-output"></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tip">
+                <p><strong>Short-circuit Evaluation:</strong> Python stops evaluating logical expressions as soon as the result is determined. For <code>and</code>, if the first condition is <code>False</code>, it doesn't check the second. For <code>or</code>, if the first is <code>True</code>, it skips the second.</p>
+            </div>
+        </div>
+        
+                <!-- Real-world Example -->
+        <div class="real-world">
+            <h2><i class="fas fa-globe"></i> Real-world Application</h2>
+            <p>Conditionals are used everywhere in programming. Here's a practical example:</p>
+            
+            <div class="python-editor">
+                <div class="editor-header">
+                    <h3><i class="fab fa-python"></i> Login System Example</h3>
+                    <div class="editor-actions">
+                        <button id="realworld-run-btn" class="editor-btn run-btn">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <button id="realworld-reset-btn" class="editor-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="code-area">
+                        <textarea id="realworld-code" spellcheck="false"># Simple login system simulation
+username = "admin"
+password = "secure123"
+attempts_left = 3
+
+# Change these values to test different scenarios
+input_username = "admin"
+input_password = "wrongpass"
+
+if attempts_left <= 0:
+    print("Account locked! Too many failed attempts")
+elif input_username == username:
+    if input_password == password:
+        print("Login successful! Welcome back")
+    else:
+        attempts_left -= 1
+        print(f"Wrong password! {attempts_left} attempts left")
+else:
+    print("Username not found")</textarea>
+                    </div>
+                    <div class="output-area">
+                        <div class="output-header">
+                            <span>Output:</span>
+                            <button id="realworld-clear-btn" class="editor-btn clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="realworld-output"></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <p>This shows how conditionals can be used to create security systems, user interfaces, and other practical applications.</p>
+        </div>
+        
+        <!-- Challenge Section -->
+        <div class="challenge">
+            <h2><i class="fas fa-trophy"></i> Coding Challenge</h2>
+            <p>Create a program that:</p>
+            <ol>
+                <li>Asks for a user's age (you can hardcode it for now)</li>
+                <li>Checks if they're eligible to drive (16+ in most places)</li>
+                <li>If eligible, check if they have a license</li>
+                <li>If not eligible, tell them how many years they need to wait</li>
+                <li>Use at least one <code>if</code>, <code>elif</code>, <code>else</code>, and logical operators</li>
+            </ol>
+            
+            <div class="python-editor">
+                <div class="editor-header">
+                    <h3><i class="fab fa-python"></i> Challenge Editor</h3>
+                    <div class="editor-actions">
+                        <button id="challenge-run-btn" class="editor-btn run-btn">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <button id="challenge-reset-btn" class="editor-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="code-area">
+                        <textarea id="challenge-code" spellcheck="false"># Complete the driving eligibility checker
+age = 15  # Change this value to test different cases
+has_license = False  # Change to True/False
+
+# Your code here
+if age >= 16:
+    if has_license:
+        print("You're all set to drive!")
+    else:
+        print("You're old enough but need a license")
+else:
+    years_to_wait = 16 - age
+    print(f"You need to wait {years_to_wait} more year(s)")
+
+# Bonus: Add checks for different countries with varying minimum ages</textarea>
+                    </div>
+                    <div class="output-area">
+                        <div class="output-header">
+                            <span>Output:</span>
+                            <button id="challenge-clear-btn" class="editor-btn clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="challenge-output"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recap Section -->
+        <div class="recap">
+            <h2><i class="fas fa-clipboard-check"></i> Key Takeaways</h2>
+            <ul>
+                <li><code>if</code> statements let your code make decisions based on conditions</li>
+                <li>Use <code>else</code> to handle cases where the <code>if</code> condition is <code>False</code></li>
+                <li><code>elif</code> allows checking multiple conditions in sequence</li>
+                <li>You can nest conditionals inside other conditionals for complex logic</li>
+                <li>Logical operators (<code>and</code>, <code>or</code>, <code>not</code>) combine multiple conditions</li>
+                <li>Python uses indentation to define code blocks (standard is 4 spaces)</li>
+                <li>Conditionals are fundamental for creating interactive, dynamic programs</li>
+            </ul>
+            
+            <div class="tip">
+                <p><strong>Best Practice:</strong> Keep your conditionals as simple and readable as possible. Complex nested conditionals can often be simplified or broken into separate functions.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="module-navigation">
+                        <span class="nav-btn disabled"><i class="fas fa-arrow-left"></i> Previous</span>
+                        <div class="progress-indicator">Module 5 of 12</div>
+                        <a href="module6.html" class="nav-btn">Next: Python Loops Mastery<i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+        </div>
+        
+
+    <script>
+        // Initialize Pyodide
+        async function initPyodide() {
+            let pyodide = await loadPyodide({
+                indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
+            });
+            return pyodide;
+        }
+
+        // Editor management
+        class PythonEditor {
+            constructor(codeId, outputId, runBtnId, resetBtnId, clearBtnId, defaultCode) {
+                this.codeElement = document.getElementById(codeId);
+                this.outputElement = document.getElementById(outputId);
+                this.runBtn = document.getElementById(runBtnId);
+                this.resetBtn = document.getElementById(resetBtnId);
+                this.clearBtn = document.getElementById(clearBtnId);
+                this.defaultCode = defaultCode;
+                this.pyodide = null;
+                this.initialized = false;
+                
+                this.setupEvents();
+                this.resetEditor(false);
+            }
+            
+            async initialize() {
+                if (!this.initialized) {
+                    this.outputElement.textContent = "Loading Python runtime...\n";
+                    this.pyodide = await initPyodide();
+                    this.outputElement.textContent += "Python ready! Try running your code.\n";
+                    this.initialized = true;
+                }
+            }
+            
+            setupEvents() {
+                this.runBtn.addEventListener('click', () => this.runCode());
+                this.resetBtn.addEventListener('click', () => this.resetEditor());
+                this.clearBtn.addEventListener('click', () => this.clearOutput());
+            }
+            
+            async runCode() {
+                await this.initialize();
+                const code = this.codeElement.value;
+                
+                this.outputElement.textContent += ">>> Running your code...\n";
+                
+                try {
+                    let result = await this.pyodide.runPythonAsync(code);
+                    if (result !== undefined) {
+                        this.outputElement.textContent += String(result) + "\n";
+                    }
+                    this.outputElement.textContent += ">>> Execution complete.\n";
+                } catch (error) {
+                    this.outputElement.textContent += `Error: ${error.message}\n`;
+                }
+                
+                this.outputElement.scrollTop = this.outputElement.scrollHeight;
+            }
+            
+            resetEditor(confirm = true) {
+                if (!confirm || window.confirm("Reset code to default example?")) {
+                    this.codeElement.value = this.defaultCode;
+                    this.clearOutput();
+                }
+            }
+            
+            clearOutput() {
+                this.outputElement.textContent = "";
+            }
+        }
+
+        // Initialize editors when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // if statement editor
+            new PythonEditor(
+                'if-code',
+                'if-output',
+                'if-run-btn',
+                'if-reset-btn',
+                'if-clear-btn',
+                `# Change the temperature value to see different outputs
+temperature = 25
+
+if temperature > 30:
+    print("It's a hot day!")
+    print("Remember to drink water")
+
+print("This line always executes")`
+            );
+            
+            // if...else editor
+            new PythonEditor(
+                'ifelse-code',
+                'ifelse-output',
+                'ifelse-run-btn',
+                'ifelse-reset-btn',
+                'ifelse-clear-btn',
+                `# Change the age value to see different messages
+age = 17
+
+if age >= 18:
+    print("You are eligible to vote!")
+    print("Please register if you haven't")
+else:
+    years_left = 18 - age
+    print(f"Sorry, you can't vote yet. Come back in {years_left} year(s)")
+
+print("Voting is important!")`
+            );
+            
+            // elif editor
+            new PythonEditor(
+                'elif-code',
+                'elif-output',
+                'elif-run-btn',
+                'elif-reset-btn',
+                'elif-clear-btn',
+                `# Change the score to see different grades
+score = 85
+
+if score >= 90:
+    print("Grade: A")
+    print("Excellent work!")
+elif score >= 80:
+    print("Grade: B")
+    print("Good job!")
+elif score >= 70:
+    print("Grade: C")
+    print("You passed")
+elif score >= 60:
+    print("Grade: D")
+    print("You barely passed")
+else:
+    print("Grade: F")
+    print("You failed")
+
+print("Study hard!")`
+            );
+            
+            // Nested editor
+            new PythonEditor(
+                'nested-code',
+                'nested-output',
+                'nested-run-btn',
+                'nested-reset-btn',
+                'nested-clear-btn',
+                `# Try different combinations of age and has_permission
+age = 15
+has_permission = False
+
+if age >= 13:
+    print("You meet the age requirement")
+    
+    if has_permission:
+        print("You can create an account")
+    else:
+        print("You need parental permission")
+else:
+    print("You're too young to register")
+
+print("Thanks for your interest")`
+            );
+            
+            // Logical operators editor
+            new PythonEditor(
+                'logical-code',
+                'logical-output',
+                'logical-run-btn',
+                'logical-reset-btn',
+                'logical-clear-btn',
+                `# Experiment with different values for age and is_member
+age = 25
+is_member = True
+
+# Using AND
+if age >= 18 and is_member:
+    print("You get full access!")
+else:
+    print("Access restricted")
+
+# Using OR
+if age < 12 or age >= 65:
+    print("You qualify for a discount")
+
+# Using NOT
+if not is_member:
+    print("Consider joining for benefits")
+
+# Combined example
+temperature = 22
+is_weekend = True
+has_umbrella = False
+
+if (temperature > 25 or is_weekend) and not has_umbrella:
+    print("Perfect weather for going out!")
+else:
+    print("Maybe stay indoors")`
+            );
+            
+            // Real-world example editor
+            new PythonEditor(
+                'realworld-code',
+                'realworld-output',
+                'realworld-run-btn',
+                'realworld-reset-btn',
+                'realworld-clear-btn',
+                `# Simple login system simulation
+username = "admin"
+password = "secure123"
+attempts_left = 3
+
+# Change these values to test different scenarios
+input_username = "admin"
+input_password = "wrongpass"
+
+if attempts_left <= 0:
+    print("Account locked! Too many failed attempts")
+elif input_username == username:
+    if input_password == password:
+        print("Login successful! Welcome back")
+    else:
+        attempts_left -= 1
+        print(f"Wrong password! {attempts_left} attempts left")
+else:
+    print("Username not found")`
+            );
+            
+            // Challenge editor
+            new PythonEditor(
+                'challenge-code',
+                'challenge-output',
+                'challenge-run-btn',
+                'challenge-reset-btn',
+                'challenge-clear-btn',
+                `# Complete the driving eligibility checker
+age = 15  # Change this value to test different cases
+has_license = False  # Change to True/False
+
+# Your code here
+if age >= 16:
+    if has_license:
+        print("You're all set to drive!")
+    else:
+        print("You're old enough but need a license")
+else:
+    years_to_wait = 16 - age
+    print(f"You need to wait {years_to_wait} more year(s)")
+
+# Bonus: Add checks for different countries with varying minimum ages`
+            );
+        });
+    </script>
+    
+    <!-- Load Pyodide -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    
+    <script src="../script-main.js"></script>
+</body>
+</html>   

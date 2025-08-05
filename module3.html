@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3: Data Types in Python | LegendTech</title>
+    <link rel="stylesheet" href="styles-main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="assets-logo.png">
+    <style>
+        :root {
+            --primary: #6a1b9a;
+            --secondary: #9c27b0;
+            --accent: #e91e63;
+            --light: #f5f5f5;
+            --dark: #333;
+            --gray: #757575;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fefefe;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .module-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .module-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .module-header h2 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .content-section {
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        h3 {
+            color: var(--primary);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background-color: var(--light);
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background-color: rgba(106, 27, 154, 0.05);
+        }
+        
+        code {
+            background-color: rgba(106, 27, 154, 0.1);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        /* Python Editor Styles */
+        .python-editor {
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 30px 0;
+            border: 1px solid #e1e4e8;
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #3776ab 0%, #306998 100%);
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .editor-header h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .editor-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .editor-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+        
+        .run-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .run-btn:hover {
+            background-color: #218838;
+        }
+        
+        .reset-btn, .clear-btn {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .reset-btn:hover, .clear-btn:hover {
+            background-color: #e9ecef;
+        }
+        
+        .editor-container {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (min-width: 768px) {
+            .editor-container {
+                flex-direction: row;
+                height: 300px;
+            }
+        }
+        
+        .code-area, .output-area {
+            flex: 1;
+            position: relative;
+        }
+        
+        .code-area {
+            border-right: 1px solid #e1e4e8;
+        }
+        
+        #python-code {
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: none;
+            resize: none;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            background-color: #f6f8fa;
+            color: #24292e;
+            tab-size: 4;
+        }
+        
+        .output-area {
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .output-header {
+            padding: 8px 15px;
+            background-color: #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        #output {
+            flex: 1;
+            padding: 15px;
+            margin: 0;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .editor-footer {
+            padding: 8px 15px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e1e4e8;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .practice-instructions {
+            background-color: rgba(233, 30, 99, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .summary-section {
+            background-color: rgba(106, 27, 154, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+     <!-- Animated Loader -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-text">Loading Module 3</div>
+        </div>
+    </div>
+    <div class="module-container">
+        <div class="module-header">
+            <h2><i class="fas fa-puzzle-piece"></i> Module 3: Data Types in Python</h2>
+            <div class="course-meta">
+                <span><i class="fas fa-modules"></i> 12 Modules</span>
+                <span><i class="fas fa-clock"></i> 15 Hours</span>
+                <span><i class="fas fa-level-up-alt"></i> Beginner to Advanced</span>
+            </div>
+        </div>
+        <div class="course-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 8%;"></div>
+            </div>
+            <span>8% Complete</span>
+        </div>            
+        </div>
+        
+        <div class="content-section">
+            <p>In Python, <strong>data types</strong> define the kind of value a variable can hold. Every value in Python has a data type. Understanding data types is essential because it determines what operations you can perform and how Python will process your data.</p>
+        </div>
+        
+        <div class="content-section">
+            <h3><i class="fas fa-list-ol"></i> Python's Main Data Types</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Example</th>
+                        <th>Description</th>
+                        <th>Mutable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>int</code></td>
+                        <td><code>42</code></td>
+                        <td>Whole numbers (positive or negative)</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td><code>float</code></td>
+                        <td><code>3.14</code></td>
+                        <td>Decimal numbers</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td><code>str</code></td>
+                        <td><code>"Hello"</code></td>
+                        <td>Text (sequence of characters)</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td><code>bool</code></td>
+                        <td><code>True</code>, <code>False</code></td>
+                        <td>Boolean truth values</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td><code>list</code></td>
+                        <td><code>[1, 2, 3]</code></td>
+                        <td>Ordered, changeable collection</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td><code>tuple</code></td>
+                        <td><code>(1, 2, 3)</code></td>
+                        <td>Ordered, unchangeable collection</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td><code>dict</code></td>
+                        <td><code>{"name": "Legend"}</code></td>
+                        <td>Key-value pairs (unordered)</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td><code>set</code></td>
+                        <td><code>{1, 2, 3}</code></td>
+                        <td>Unordered collection of unique items</td>
+                        <td>Yes</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="content-section">
+            <h3><i class="fas fa-flask"></i> Type Checking</h3>
+            <p>You can check the type of any value using the <code>type()</code> function:</p>
+            <div class="python-editor">
+                <div class="editor-header">
+                    <h3><i class="fab fa-python"></i> Python Code Editor</h3>
+                    <div class="editor-actions">
+                        <button id="type-check-run-btn" class="editor-btn run-btn">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <button id="type-check-reset-btn" class="editor-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="code-area">
+                        <textarea id="type-check-code" spellcheck="false"># Check data types
+print(type(42))          # int
+print(type(3.14))        # float
+print(type("Hello"))     # str
+print(type(True))        # bool
+print(type([1, 2, 3]))   # list
+print(type({"a": 1}))    # dict</textarea>
+                    </div>
+                    <div class="output-area">
+                        <div class="output-header">
+                            <span>Output:</span>
+                            <button id="type-check-clear-btn" class="editor-btn clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="type-check-output"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h3><i class="fas fa-code"></i> Hands-On Practice</h3>
+            <div class="practice-instructions">
+                <p><strong>Try these exercises:</strong></p>
+                <ol>
+                    <li>Create variables of each data type</li>
+                    <li>Use <code>type()</code> to verify their types</li>
+                    <li>Try converting between types with <code>int()</code>, <code>str()</code>, etc.</li>
+                </ol>
+            </div>
+            
+            <div class="python-editor">
+                <div class="editor-header">
+                    <h3><i class="fab fa-python"></i> Practice Editor</h3>
+                    <div class="editor-actions">
+                        <button id="practice-run-btn" class="editor-btn run-btn">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <button id="practice-reset-btn" class="editor-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="code-area">
+                        <textarea id="practice-code" spellcheck="false"># Practice with data types here
+
+# Example:
+age = 25
+name = "Legend"
+grades = [90, 85, 88]
+
+print(f"{name} is {age} years old")
+print(f"Grades: {grades}")</textarea>
+                    </div>
+                    <div class="output-area">
+                        <div class="output-header">
+                            <span>Output:</span>
+                            <button id="practice-clear-btn" class="editor-btn clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="practice-output"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="module-navigation">
+                        <span class="nav-btn disabled"><i class="fas fa-arrow-left"></i> Previous</span>
+                        <div class="progress-indicator">Module 3 of 12</div>
+                        <a href="module4.html" class="nav-btn">Next: Python Operators<i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+        </div>
+        <div class="course-meta">
+                <span><i class="fas fa-modules"></i> 12 Modules</span>
+                <span><i class="fas fa-clock"></i> 15 Hours</span>
+                <span><i class="fas fa-level-up-alt"></i> Beginner to Advanced</span>
+            </div>
+        </div>
+        <div class="course-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 8%;"></div>
+            </div>
+            <span>8% Complete</span>
+        </div>
+        
+        <div class="summary-section">
+            <h3><i class="fas fa-clipboard-check"></i> Key Takeaways</h3>
+            <ul>
+                <li>Python has several built-in data types for different purposes</li>
+                <li>Use <code>type()</code> to check any variable's data type</li>
+                <li>Mutable types (like lists) can be changed after creation</li>
+                <li>Immutable types (like tuples) cannot be changed</li>
+                <li>Choose the appropriate data type for your specific needs</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Pyodide
+        async function initPyodide() {
+            let pyodide = await loadPyodide({
+                indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
+            });
+            return pyodide;
+        }
+
+        // Editor management
+        class PythonEditor {
+            constructor(codeId, outputId, runBtnId, resetBtnId, clearBtnId, defaultCode) {
+                this.codeElement = document.getElementById(codeId);
+                this.outputElement = document.getElementById(outputId);
+                this.runBtn = document.getElementById(runBtnId);
+                this.resetBtn = document.getElementById(resetBtnId);
+                this.clearBtn = document.getElementById(clearBtnId);
+                this.defaultCode = defaultCode;
+                this.pyodide = null;
+                this.initialized = false;
+                
+                this.setupEvents();
+                this.resetEditor(false);
+            }
+            
+            async initialize() {
+                if (!this.initialized) {
+                    this.outputElement.textContent = "Loading Python runtime...\n";
+                    this.pyodide = await initPyodide();
+                    this.outputElement.textContent += "Python ready! Try running your code.\n";
+                    this.initialized = true;
+                }
+            }
+            
+            setupEvents() {
+                this.runBtn.addEventListener('click', () => this.runCode());
+                this.resetBtn.addEventListener('click', () => this.resetEditor());
+                this.clearBtn.addEventListener('click', () => this.clearOutput());
+            }
+            
+            async runCode() {
+                await this.initialize();
+                const code = this.codeElement.value;
+                
+                this.outputElement.textContent += ">>> Running your code...\n";
+                
+                try {
+                    let result = await this.pyodide.runPythonAsync(code);
+                    if (result !== undefined) {
+                        this.outputElement.textContent += String(result) + "\n";
+                    }
+                    this.outputElement.textContent += ">>> Execution complete.\n";
+                } catch (error) {
+                    this.outputElement.textContent += `Error: ${error.message}\n`;
+                }
+                
+                this.outputElement.scrollTop = this.outputElement.scrollHeight;
+            }
+            
+            resetEditor(confirm = true) {
+                if (!confirm || window.confirm("Reset code to default example?")) {
+                    this.codeElement.value = this.defaultCode;
+                    this.clearOutput();
+                }
+            }
+            
+            clearOutput() {
+                this.outputElement.textContent = "";
+            }
+        }
+
+        // Initialize editors when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Type checking editor
+            new PythonEditor(
+                'type-check-code',
+                'type-check-output',
+                'type-check-run-btn',
+                'type-check-reset-btn',
+                'type-check-clear-btn',
+                `# Check data types
+print(type(42))          # int
+print(type(3.14))        # float
+print(type("Hello"))     # str
+print(type(True))        # bool
+print(type([1, 2, 3]))   # list
+print(type({"a": 1}))    # dict`
+            );
+            
+            // Practice editor
+            new PythonEditor(
+                'practice-code',
+                'practice-output',
+                'practice-run-btn',
+                'practice-reset-btn',
+                'practice-clear-btn',
+                `# Practice with data types here
+
+# Example:
+age = 25
+name = "Legend"
+grades = [90, 85, 88]
+
+print(f"{name} is {age} years old")
+print(f"Grades: {grades}")`
+            );
+        });
+    </script>
+    
+    <!-- Load Pyodide -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    
+    <script src="../script-main.js"></script>
+</body>
+</html>

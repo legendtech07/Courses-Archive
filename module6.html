@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Loops Mastery</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../assets-logo.png">
+    <link rel="stylesheet" href="../styles-main.css">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #3776ab;
+            border-bottom: 3px solid #306998;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            background-color: #e1f0fa;
+            padding: 10px 15px;
+            border-left: 5px solid #3776ab;
+            margin-top: 30px;
+        }
+        
+                .module-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .module-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .module-header h1 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .module-intro {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .concept-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #3776ab;
+        }
+        
+        .syntax-box {
+            background-color: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .example-box {
+            background-color: #f0f7f4;
+            border: 1px solid #d1e7dd;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .challenge {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 25px 0;
+        }
+        
+        .tip {
+            background-color: #e7f5ff;
+            border: 1px solid #d0ebff;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        
+        .warning {
+            background-color: #fff3bf;
+            border: 1px solid #ffec99;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 15px 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background-color: #3776ab;
+            color: white;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        /* Python Editor Styles */
+        .python-editor {
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 30px 0;
+            border: 1px solid #e1e4e8;
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #3776ab 0%, #306998 100%);
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .editor-header h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .editor-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .editor-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+        
+        .run-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .run-btn:hover {
+            background-color: #218838;
+        }
+        
+        .reset-btn, .clear-btn {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .reset-btn:hover, .clear-btn:hover {
+            background-color: #e9ecef;
+        }
+        
+        .editor-container {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (min-width: 768px) {
+            .editor-container {
+                flex-direction: row;
+            }
+        }
+        
+        .code-area, .output-area {
+            flex: 1;
+            position: relative;
+        }
+        
+        .code-area {
+            border-right: 1px solid #e1e4e8;
+        }
+        
+        .python-code {
+            width: 100%;
+            height: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: none;
+            resize: vertical;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            background-color: #f6f8fa;
+            color: #24292e;
+            tab-size: 4;
+        }
+        
+        .output-area {
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .output-header {
+            padding: 8px 15px;
+            background-color: #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .output {
+            flex: 1;
+            padding: 15px;
+            margin: 0;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            min-height: 100px;
+        }
+        
+        .editor-footer {
+            padding: 8px 15px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e1e4e8;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .visual-example {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .loop-visual {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .loop-step {
+            background-color: #3776ab;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        .key-concept {
+            background-color: #e1f0fa;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        
+        #loading-message {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #ffeb3b;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        
+        .disabled {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+                <!-- Animated Loader -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-text">Loading module 6</div>
+        </div>
+    </div>
+    <div class="module-container">
+        <div class="module-header">
+            <h1><i class="fas fa-code-branch"></i> Module 6: Python Loop</h1>
+            <div class="course-meta">
+                <span><i class="fas fa-modules"></i> 12 Modules</span>
+                <span><i class="fas fa-clock"></i> 15 Hours</span>
+                <span><i class="fas fa-level-up-alt"></i> Beginner to Advanced</span>
+            </div>
+        </div>
+        <div class="course-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 8%;"></div>
+            </div>
+            <span>8% Complete</span>
+        </div>
+        </div>
+    <h1>🔁 Python Loops Mastery</h1>
+    <p>Welcome to Module 6: Python Loops — one of the most powerful tools in Python. Loops let your program repeat actions automatically like a robot on steroids 🤖⚡.</p>
+    
+    <div class="concept-card">
+        <h2>Why Learn Loops?</h2>
+        <p>Loops help you:</p>
+        <ul>
+            <li>Automate repetitive tasks</li>
+            <li>Process large amounts of data efficiently</li>
+            <li>Create patterns and sequences</li>
+            <li>Build interactive programs</li>
+            <li>Solve complex problems with simple, repeated steps</li>
+        </ul>
+    </div>
+    
+    <h2>🧠 1. The for Loop</h2>
+    <p>The <code>for</code> loop is used to iterate over sequences like lists, strings, ranges, etc.</p>
+    
+    <div class="syntax-box">
+        <strong>Syntax:</strong><br>
+        for item in sequence:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;# do something
+    </div>
+    
+    <div class="visual-example">
+        <h3>How a for loop works:</h3>
+        <div class="loop-visual">
+            <div class="loop-step">Start</div>
+            <div class="loop-step">Get next item</div>
+            <div class="loop-step">Execute code</div>
+            <div class="loop-step">More items?</div>
+            <div class="loop-step">Yes → Repeat</div>
+            <div class="loop-step">No → Exit</div>
+        </div>
+    </div>
+    
+    <h3>Examples:</h3>
+    
+    <div class="example-box">
+        <strong>✅ Loop through a list:</strong>
+        <div class="python-editor" id="editor1">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor1')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor1')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">fruits = ["apple", "banana", "mango"]
+for fruit in fruits:
+    print(fruit)</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor1')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="example-box">
+        <strong>✅ Loop through a range:</strong>
+        <div class="python-editor" id="editor2">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor2')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor2')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">for i in range(5):
+    print(i)</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor2')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+        <p>This prints: 0 1 2 3 4</p>
+    </div>
+    
+    <div class="example-box">
+        <strong>✅ Loop with custom start and end:</strong>
+        <div class="python-editor" id="editor3">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor3')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor3')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">for i in range(2, 6):
+    print(i)</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor3')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+        <p>Prints: 2 3 4 5</p>
+    </div>
+    
+    <div class="example-box">
+        <strong>✅ Loop with step:</strong>
+        <div class="python-editor" id="editor4">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor4')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor4')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">for i in range(0, 10, 2):
+    print(i)</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor4')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+        <p>Prints: 0 2 4 6 8</p>
+    </div>
+    
+    <div class="tip">
+        <strong>💡 Pro Tip:</strong> You can use <code>range()</code> in three ways:
+        <ul>
+            <li><code>range(stop)</code> → 0 to stop-1</li>
+            <li><code>range(start, stop)</code> → start to stop-1</li>
+            <li><code>range(start, stop, step)</code> → start to stop-1, incrementing by step</li>
+        </ul>
+    </div>
+    
+    <h2>🔄 2. The while Loop</h2>
+    <p>The <code>while</code> loop keeps going as long as a condition is true.</p>
+    
+    <div class="syntax-box">
+        <strong>Syntax:</strong><br>
+        while condition:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;# do something
+    </div>
+    
+    <div class="visual-example">
+        <h3>How a while loop works:</h3>
+        <div class="loop-visual">
+            <div class="loop-step">Check condition</div>
+            <div class="loop-step">True?</div>
+            <div class="loop-step">Execute code</div>
+            <div class="loop-step">Check again</div>
+            <div class="loop-step">False → Exit</div>
+        </div>
+    </div>
+    
+    <div class="example-box">
+        <strong>Example:</strong>
+        <div class="python-editor" id="editor5">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor5')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor5')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">x = 0
+while x < 5:
+    print(x)
+    x += 1</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor5')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="warning">
+        <strong>⚠️ Warning:</strong> If the condition never becomes false, you'll create an infinite loop! Always make sure your while loop has an exit condition.
+    </div>
+    
+    <h2>🔚 3. Loop Control Statements</h2>
+    <p>Python gives you special keywords to control loops:</p>
+    
+    <div class="key-concept">
+        <code>break</code> - Stops the loop immediately
+    </div>
+    
+    <div class="example-box">
+        <div class="python-editor" id="editor6">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor6')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor6')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">for i in range(10):
+    if i == 5:
+        break
+    print(i)</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor6')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="key-concept">
+        <code>continue</code> - Skips the rest of the current loop and goes to the next iteration
+    </div>
+    
+    <div class="example-box">
+        <div class="python-editor" id="editor7">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor7')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor7')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">for i in range(5):
+    if i == 2:
+        continue
+    print(i)</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor7')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="key-concept">
+        <code>else</code> with loops - Runs once when the loop finishes (but not if you break it)
+    </div>
+    
+    <div class="example-box">
+        <div class="python-editor" id="editor8">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor8')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor8')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">for i in range(3):
+    print(i)
+else:
+    print("Loop finished!")</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor8')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h2>💎 4. Nested Loops</h2>
+    <p>You can place a loop inside another loop.</p>
+    
+    <div class="example-box">
+        <div class="python-editor" id="editor9">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor9')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor9')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">for i in range(2):
+    for j in range(3):
+        print(f"i={i}, j={j}")</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor9')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tip">
+        <strong>💡 Real-world use:</strong> Nested loops are great for working with grids, tables, or any multi-dimensional data.
+    </div>
+    
+    <h2>🧪 5. Practice Challenges</h2>
+    
+    <div class="challenge">
+        <h3>🔥 Challenge 1: Print all even numbers from 1 to 20</h3>
+        <div class="python-editor" id="editor10">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor10')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor10')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code"># Your solution here
+for i in range(1, 21):
+    if i % 2 == 0:
+        print(i)</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor10')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div class="challenge">
+        <h3>🔁 Challenge 2: Repeat "Hello" 3 times using while</h3>
+        <div class="python-editor" id="editor11">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor11')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor11')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code"># Your solution here
+count = 0
+while count < 3:
+    print("Hello")
+    count += 1</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor11')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="challenge">
+        <h3>🌟 Bonus Challenge: Print a number pyramid</h3>
+        <p>Try to create this pattern using nested loops:</p>
+        <pre>
+1
+22
+333
+4444
+55555
+        </pre>
+        <div class="python-editor" id="editor12">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor12')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor12')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code"># Your solution here
+for i in range(1, 6):
+    for j in range(i):
+        print(i, end="")
+    print()</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor12')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h2>🧠 Recap</h2>
+    
+    <table class="comparison-table">
+        <tr>
+            <th>Loop Type</th>
+            <th>When to Use</th>
+            <th>Key Points</th>
+        </tr>
+        <tr>
+            <td><code>for</code></td>
+            <td>When you know how many times to loop</td>
+            <td>Great for sequences, ranges, known iterations</td>
+        </tr>
+        <tr>
+            <td><code>while</code></td>
+            <td>When looping until a condition breaks</td>
+            <td>Useful for unknown iterations, beware infinite loops</td>
+        </tr>
+    </table>
+    
+    <div class="tip">
+        <strong>🎓 Next Steps:</strong> Try combining loops with other concepts you've learned:
+        <ul>
+            <li>Loops with lists</li>
+            <li>Loops with conditionals</li>
+            <li>Loops with functions</li>
+            <li>Loops with dictionaries</li>
+        </ul>
+    </div>
+    
+    <div id="loading-message">Loading Python runtime... (this may take a moment)</div>
+    
+      <div class="module-navigation">
+                        <span class="nav-btn disabled"><i class="fas fa-arrow-left"></i> Previous</span>
+                        <div class="progress-indicator">Module 6 of 12</div>
+                        <a href="module7.html" class="nav-btn">Next: Python Loops Mastery<i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+        </div>
+    
+    <script>
+        // Global Pyodide instance
+        let pyodide;
+        
+        // Initialize Pyodide
+        async function initializePyodide() {
+            try {
+                pyodide = await loadPyodide({
+                    indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
+                });
+                
+                // Enable all buttons
+                document.querySelectorAll('.editor-btn').forEach(btn => {
+                    btn.disabled = false;
+                });
+                
+                // Hide loading message
+                document.getElementById('loading-message').style.display = 'none';
+                
+                console.log("Pyodide loaded successfully!");
+            } catch (error) {
+                console.error("Error loading Pyodide:", error);
+                document.getElementById('loading-message').textContent = "Failed to load Python. Please refresh the page.";
+            }
+        }
+        
+        // Run Python code
+        async function runCode(editorId) {
+            if (!pyodide) {
+                alert("Python is still loading. Please wait...");
+                return;
+            }
+            
+            const editor = document.getElementById(editorId);
+            const code = editor.querySelector('.python-code').value;
+            const outputElement = editor.querySelector('.output');
+            
+            try {
+                outputElement.textContent = "Running...";
+                
+                // Redirect Python stdout to our output element
+                pyodide.runPython(`
+                    import sys
+                    from js import document
+                    editor = document.getElementById('${editorId}')
+                    output = editor.querySelector('.output')
+                    
+                    class OutputCapture:
+                        def write(self, text):
+                            output.textContent += text
+                        def flush(self):
+                            pass
+                    
+                    sys.stdout = OutputCapture()
+                    sys.stderr = OutputCapture()
+                `);
+                
+                // Run the user's code
+                await pyodide.runPythonAsync(code);
+                
+                // If there was no output, show a message
+                if (outputElement.textContent === "Running...") {
+                    outputElement.textContent = "Code executed successfully (no output)";
+                }
+            } catch (error) {
+                outputElement.textContent = "Error: " + error.message;
+            }
+        }
+        
+        // Reset editor to original code
+        function resetCode(editorId) {
+            const editor = document.getElementById(editorId);
+            const codeArea = editor.querySelector('.python-code');
+            const outputElement = editor.querySelector('.output');
+            
+            if (codeArea.dataset.original) {
+                codeArea.value = codeArea.dataset.original;
+            }
+            
+            outputElement.textContent = "";
+        }
+        
+        // Clear output
+        function clearOutput(editorId) {
+            const editor = document.getElementById(editorId);
+            editor.querySelector('.output').textContent = "";
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Store original code for each editor
+            const editors = document.querySelectorAll('.python-editor');
+            editors.forEach(editor => {
+                const codeArea = editor.querySelector('.python-code');
+                codeArea.dataset.original = codeArea.value;
+            });
+            
+            // Disable all buttons until Pyodide loads
+            document.querySelectorAll('.editor-btn').forEach(btn => {
+                btn.disabled = true;
+            });
+            
+            // Start loading Pyodide
+            initializePyodide();
+        });
+    </script>
+        <script src="../script-main.js"></script>
+</body>
+</html>

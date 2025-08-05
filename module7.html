@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Functions Mastery</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../assets-logo.png">
+    <link rel="stylesheet" href="../styles-main.css">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #3776ab;
+            border-bottom: 3px solid #306998;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            background-color: #e1f0fa;
+            padding: 10px 15px;
+            border-left: 5px solid #3776ab;
+            margin-top: 30px;
+        }
+        
+        .concept-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #3776ab;
+        }
+        
+        .syntax-box {
+            background-color: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .example-box {
+            background-color: #f0f7f4;
+            border: 1px solid #d1e7dd;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .challenge {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 25px 0;
+        }
+        
+        .tip {
+            background-color: #e7f5ff;
+            border: 1px solid #d0ebff;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        
+        .warning {
+            background-color: #fff3bf;
+            border: 1px solid #ffec99;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 15px 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background-color: #3776ab;
+            color: white;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        /* Python Editor Styles */
+        .python-editor {
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 30px 0;
+            border: 1px solid #e1e4e8;
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #3776ab 0%, #306998 100%);
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .editor-header h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .editor-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .editor-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+        
+        .run-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .run-btn:hover {
+            background-color: #218838;
+        }
+        
+        .reset-btn, .clear-btn {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .reset-btn:hover, .clear-btn:hover {
+            background-color: #e9ecef;
+        }
+        
+        .editor-container {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (min-width: 768px) {
+            .editor-container {
+                flex-direction: row;
+            }
+        }
+        
+        .code-area, .output-area {
+            flex: 1;
+            position: relative;
+        }
+        
+        .code-area {
+            border-right: 1px solid #e1e4e8;
+        }
+        
+        .python-code {
+            width: 100%;
+            height: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: none;
+            resize: vertical;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            background-color: #f6f8fa;
+            color: #24292e;
+            tab-size: 4;
+        }
+        
+        .output-area {
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .output-header {
+            padding: 8px 15px;
+            background-color: #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .output {
+            flex: 1;
+            padding: 15px;
+            margin: 0;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            min-height: 100px;
+        }
+        
+        .editor-footer {
+            padding: 8px 15px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e1e4e8;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .key-concept {
+            background-color: #e1f0fa;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        
+        #loading-message {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #ffeb3b;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        
+        .disabled {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .param-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .param-table th, .param-table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        
+        .param-table th {
+            background-color: #306998;
+            color: white;
+        }
+        
+        .param-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+                .module-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .module-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .module-header h1 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .module-intro {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--secondary);
+        }
+    </style>
+</head>
+<body>
+                <!-- Animated Loader -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-text">Loading module 7</div>
+        </div>
+    </div>
+    
+        <div class="module-container">
+        <div class="module-header">
+            <h1><i class="fas fa-code-branch"></i> Module 7: Python Functions</h1>
+            <div class="course-meta">
+                <span><i class="fas fa-modules"></i> 12 Modules</span>
+                <span><i class="fas fa-clock"></i> 15 Hours</span>
+                <span><i class="fas fa-level-up-alt"></i> Beginner to Advanced</span>
+            </div>
+        </div>
+                <div class="course-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 8%;"></div>
+            </div>
+            <span>8% Complete</span>
+        </div>
+        </div>
+        
+    <h1>🚀 Python Functions Mastery</h1>
+    <p>Welcome to Module 7: Functions in Python — a total game-changer when it comes to writing clean, reusable, and powerful code. This is where your code starts to look pro-level.</p>
+    
+    <div class="concept-card">
+        <h2>🧠 What is a Function?</h2>
+        <p>A function is a block of reusable code that runs only when you call it. Instead of repeating code again and again, you define it once and reuse it anywhere.</p>
+    </div>
+    
+    <div class="concept-card">
+        <h2>🛠️ Why Use Functions?</h2>
+        <p>Functions help you:</p>
+        <ul>
+            <li>📦 Break your code into smaller parts (modularity)</li>
+            <li>🔄 Reuse the same logic multiple times</li>
+            <li>🔍 Debug easier</li>
+            <li>🧼 Keep your code clean and readable</li>
+        </ul>
+    </div>
+    
+    <h2>✍️ How to Define a Function</h2>
+    
+    <div class="syntax-box">
+        <strong>✅ Basic Syntax:</strong><br>
+        def function_name():<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;# code block
+    </div>
+    
+    <div class="example-box">
+        <strong>Example:</strong>
+        <div class="python-editor" id="editor1">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor1')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor1')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">def greet():
+    print("Hello, Legend!")
+
+# Call the function
+greet()</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor1')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h2>📩 Function with Parameters</h2>
+    <p>Functions can receive inputs, called parameters, which you use inside the function.</p>
+    
+    <div class="example-box">
+        <div class="python-editor" id="editor2">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor2')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor2')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">def greet(name):
+    print("Hello, " + name + "!")
+
+# Call the function
+greet("Princess Deephanie")</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor2')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h2>🎁 Returning Values from Functions</h2>
+    <p>Functions can also return results using the return keyword.</p>
+    
+    <div class="example-box">
+        <div class="python-editor" id="editor3">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor3')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor3')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">def add(a, b):
+    return a + b
+
+result = add(3, 5)
+print(result)</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor3')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h2>📚 Types of Parameters</h2>
+    
+    <table class="param-table">
+        <tr>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>1. Positional Parameters</td>
+            <td>Values are passed in order</td>
+            <td><code>subtract(5, 3)</code></td>
+        </tr>
+        <tr>
+            <td>2. Keyword Arguments</td>
+            <td>Pass values by name</td>
+            <td><code>subtract(b=3, a=5)</code></td>
+        </tr>
+        <tr>
+            <td>3. Default Parameters</td>
+            <td>Set default values if not provided</td>
+            <td><code>greet(name="Legend")</code></td>
+        </tr>
+        <tr>
+            <td>4. Arbitrary Arguments (*args)</td>
+            <td>For variable number of arguments</td>
+            <td><code>total(1, 2, 3, 4)</code></td>
+        </tr>
+        <tr>
+            <td>5. Keyword Arbitrary Arguments (**kwargs)</td>
+            <td>For dynamic key-value pairs</td>
+            <td><code>describe_person(name="Nazin", age=3000)</code></td>
+        </tr>
+    </table>
+    
+      
+    <div class="example-box">
+        <strong>Positional and Keyword Arguments:</strong>
+        <div class="python-editor" id="editor4">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor4')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor4')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">def subtract(a, b):
+    return a - b
+
+print("Positional:", subtract(5, 3))
+print("Keyword:", subtract(b=3, a=5))</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor4')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="example-box">
+        <strong>Default Parameters:</strong>
+        <div class="python-editor" id="editor5">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor5')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor5')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">def greet(name="Legend"):
+    print("Hi " + name)
+
+greet()        # Uses default
+greet("Dee")   # Overrides default</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor5')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="example-box">
+        <strong>Arbitrary Arguments (*args):</strong>
+        <div class="python-editor" id="editor6">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor6')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor6')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">def total(*numbers):
+    return sum(numbers)
+
+print(total(1, 2, 3, 4))</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor6')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="example-box">
+        <strong>Keyword Arguments (**kwargs):</strong>
+        <div class="python-editor" id="editor7">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor7')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor7')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">def describe_person(**info):
+    for key, value in info.items():
+        print(f"{key}: {value}")
+
+describe_person(name="Nazin", age=3000, role="Python Expert")</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor7')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h2>🧪 Function Practice Examples</h2>
+    
+    <div class="challenge">
+        <h3>🔥 Challenge 1: Multiply any number by 5</h3>
+        <div class="python-editor" id="editor8">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor8')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor8')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code"># Your solution here
+def multiply_by_5(n):
+    return n * 5
+
+print(multiply_by_5(7))  # Should print 35</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor8')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="challenge">
+        <h3>🔍 Challenge 2: Check if a number is even</h3>
+        <div class="python-editor" id="editor9">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor9')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor9')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code"># Your solution here
+def is_even(n):
+    return n % 2 == 0
+
+print(is_even(4))  # Should print True
+print(is_even(5))  # Should print False</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor9')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="challenge">
+        <h3>🔄 Challenge 3: Print a line multiple times</h3>
+        <div class="python-editor" id="editor10">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor10')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor10')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code"># Your solution here
+def repeat_line(text, times):
+    for _ in range(times):
+        print(text)
+
+repeat_line("Python is awesome!", 3)</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor10')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h2>🤯 Nested Functions (Functions Inside Functions)</h2>
+    <p>You can also define a function inside another.</p>
+    
+    <div class="example-box">
+        <div class="python-editor" id="editor11">
+            <div class="editor-header">
+                <h3><span>🐍</span> Python Editor</h3>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runCode('editor11')">▶ Run</button>
+                    <button class="editor-btn reset-btn" onclick="resetCode('editor11')">↻ Reset</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="code-area">
+                    <textarea class="python-code">def outer():
+    print("This is the outer function")
+    
+    def inner():
+        print("This is the inner function")
+    
+    inner()  # Call the inner function
+
+outer()  # Call the outer function</textarea>
+                </div>
+                <div class="output-area">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button class="editor-btn clear-btn" onclick="clearOutput('editor11')">🗑️ Clear</button>
+                    </div>
+                    <pre class="output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h2>🧠 Recap Table</h2>
+    
+    <table class="comparison-table">
+        <tr>
+            <th>Term</th>
+            <th>Meaning</th>
+        </tr>
+        <tr>
+            <td><code>def</code></td>
+            <td>Defines a function</td>
+        </tr>
+        <tr>
+            <td>Parameters</td>
+            <td>Inputs for a function</td>
+        </tr>
+        <tr>
+            <td><code>return</code></td>
+            <td>Sends back a result</td>
+        </tr>
+        <tr>
+            <td><code>*args</code></td>
+            <td>Tuple of extra arguments</td>
+        </tr>
+        <tr>
+            <td><code>**kwargs</code></td>
+            <td>Dict of named arguments</td>
+        </tr>
+    </table>
+    
+    <div class="tip">
+        <strong>🎓 Next Steps:</strong> Master these function concepts to level up your Python skills:
+        <ul>
+            <li>Lambda functions (anonymous functions)</li>
+            <li>Function decorators</li>
+            <li>Recursion (functions that call themselves)</li>
+            <li>Generators (functions with yield)</li>
+        </ul>
+    </div>
+    
+    <div id="loading-message">Loading Python runtime... (this may take a moment)</div>
+    
+          <div class="module-navigation">
+                        <span class="nav-btn disabled"><i class="fas fa-arrow-left"></i> Previous</span>
+                        <div class="progress-indicator">Module 7 of 12</div>
+                        <a href="module8.html" class="nav-btn">Next: Python For<i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+    
+    <script>
+        // Global Pyodide instance
+        let pyodide;
+        
+        // Initialize Pyodide
+        async function initializePyodide() {
+            try {
+                pyodide = await loadPyodide({
+                    indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
+                });
+                
+                // Enable all buttons
+                document.querySelectorAll('.editor-btn').forEach(btn => {
+                    btn.disabled = false;
+                });
+                
+                // Hide loading message
+                document.getElementById('loading-message').style.display = 'none';
+                
+                console.log("Pyodide loaded successfully!");
+            } catch (error) {
+                console.error("Error loading Pyodide:", error);
+                document.getElementById('loading-message').textContent = "Failed to load Python. Please refresh the page.";
+            }
+        }
+        
+        // Run Python code
+        async function runCode(editorId) {
+            if (!pyodide) {
+                alert("Python is still loading. Please wait...");
+                return;
+            }
+            
+            const editor = document.getElementById(editorId);
+            const code = editor.querySelector('.python-code').value;
+            const outputElement = editor.querySelector('.output');
+            
+            try {
+                outputElement.textContent = "Running...";
+                
+                // Redirect Python stdout to our output element
+                pyodide.runPython(`
+                    import sys
+                    from js import document
+                    editor = document.getElementById('${editorId}')
+                    output = editor.querySelector('.output')
+                    
+                    class OutputCapture:
+                        def write(self, text):
+                            output.textContent += text
+                        def flush(self):
+                            pass
+                    
+                    sys.stdout = OutputCapture()
+                    sys.stderr = OutputCapture()
+                `);
+                
+                // Run the user's code
+                await pyodide.runPythonAsync(code);
+                
+                // If there was no output, show a message
+                if (outputElement.textContent === "Running...") {
+                    outputElement.textContent = "Code executed successfully (no output)";
+                }
+            } catch (error) {
+                outputElement.textContent = "Error: " + error.message;
+            }
+        }
+        
+        // Reset editor to original code
+        function resetCode(editorId) {
+            const editor = document.getElementById(editorId);
+            const codeArea = editor.querySelector('.python-code');
+            const outputElement = editor.querySelector('.output');
+            
+            if (codeArea.dataset.original) {
+                codeArea.value = codeArea.dataset.original;
+            }
+            
+            outputElement.textContent = "";
+        }
+        
+        // Clear output
+        function clearOutput(editorId) {
+            const editor = document.getElementById(editorId);
+            editor.querySelector('.output').textContent = "";
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Store original code for each editor
+            const editors = document.querySelectorAll('.python-editor');
+            editors.forEach(editor => {
+                const codeArea = editor.querySelector('.python-code');
+                codeArea.dataset.original = codeArea.value;
+            });
+            
+            // Disable all buttons until Pyodide loads
+            document.querySelectorAll('.editor-btn').forEach(btn => {
+                btn.disabled = true;
+            });
+            
+            // Start loading Pyodide
+            initializePyodide();
+        });
+    </script>
+       <script src="../script-main.js"></script>
+</body>
+</html>
