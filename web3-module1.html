@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web3 & Blockchain Mastery – Module 1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f9fafc; color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(to right, #182848, #4b6cb7);
+      color: #fff; padding: 20px; text-align: center;
+    }
+    .container {
+      max-width: 900px; margin: auto; padding: 20px;
+    }
+    h2 { color: #182848; margin-top: 30px; }
+    h3 { margin-top: 20px; color: #4b6cb7; }
+    .quiz {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-top: 30px;
+    }
+    .quiz button {
+      margin-top: 15px;
+      background: #4b6cb7; color: #fff;
+      padding: 10px 18px;
+      border: none; border-radius: 6px;
+      cursor: pointer; font-size: 16px;
+    }
+    .quiz button:disabled {
+      background: #ccc; cursor: not-allowed;
+    }
+    #nextModule {
+      display: none;
+      margin-top: 25px;
+      background: #28a745;
+    }
+    .correct { color: green; font-weight: bold; }
+    .wrong { color: red; font-weight: bold; }
+    .example {
+      background: #eef4ff;
+      padding: 10px;
+      border-left: 4px solid #4b6cb7;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌐 Web3 & Blockchain Mastery</h1>
+    <h2>Module 1 – Introduction to Web3</h2>
+  </header>
+
+  <div class="container">
+    <h2>1️⃣ What is Web1, Web2, and Web3?</h2>
+    <h3>🔹 Web1 (Read-Only Internet)</h3>
+    <p>1990s to early 2000s – Static websites where you could only read content but not interact much.</p>
+    <div class="example">Example: Old Yahoo pages, early blogs. Like a digital newspaper.</div>
+
+    <h3>🔹 Web2 (Read & Write Internet)</h3>
+    <p>2005 to today – Interactive websites and social media. You can create, share, and interact (comments, likes, uploads).</p>
+    <div class="example">Example: Facebook, YouTube, Twitter, TikTok.  
+    Problem: Centralized → Companies control your data.</div>
+
+    <h3>🔹 Web3 (Read, Write & Own Internet)</h3>
+    <p>Emerging now – Built on blockchain. You own your data, assets, and identity. Decentralized, not controlled by one company.</p>
+    <div class="example">Example: NFT art in your wallet, not on Instagram. Or owning a sword in a blockchain game that you can trade anywhere.</div>
+
+    <h2>2️⃣ Why Web3 is the Future</h2>
+    <ul>
+      <li>Ownership → In Web2, companies own your content; in Web3, you own it.</li>
+      <li>No middlemen → Peer-to-peer interactions (send money without banks).</li>
+      <li>Transparency → Transactions are open and traceable.</li>
+      <li>Opportunities → NFTs, DeFi, DAOs, metaverse economies.</li>
+    </ul>
+    <div class="example">Example: Instead of Facebook selling your data for ads, Web3 lets YOU earn from your own data.</div>
+
+    <h2>3️⃣ Basic Web3 Terms</h2>
+    <h3>🔹 Wallets</h3>
+    <p>Digital tools to store crypto/NFTs.</p>
+    <ul>
+      <li>Hot wallet (online): MetaMask, Trust Wallet.</li>
+      <li>Cold wallet (offline): Ledger.</li>
+    </ul>
+
+    <h3>🔹 Tokens</h3>
+    <p>Digital assets built on blockchains.</p>
+    <ul>
+      <li>Fungible tokens (FTs): interchangeable (ETH, BTC).</li>
+      <li>Non-fungible tokens (NFTs): unique (digital art, collectibles).</li>
+    </ul>
+
+    <h3>🔹 dApps</h3>
+    <p>Decentralized apps on blockchain. Example: Uniswap, Axie Infinity.</p>
+
+    <h3>🔹 Gas Fees</h3>
+    <p>Transaction fees on blockchain. Like paying fuel charges to send ETH.</p>
+
+    <h3>🔹 DAO</h3>
+    <p>Decentralized Autonomous Organization → run by community using smart contracts. Example: Gaming guild where members vote with tokens.</p>
+
+    <h2>✅ Summary</h2>
+    <p>
+      Web1 → Read | Web2 → Read + Write | Web3 → Read + Write + Own.  
+      Web3 = ownership, decentralization, transparency, and new opportunities.  
+      You now know: Wallets, Tokens, dApps, Gas Fees, DAO.
+    </p>
+
+    <h2>🔥 Mini Exercise</h2>
+    <p>1. Go to <a href="https://metamask.io" target="_blank">metamask.io</a> and set up a wallet.<br>
+    2. Explore <a href="https://opensea.io" target="_blank">OpenSea</a> or <a href="https://uniswap.org" target="_blank">Uniswap</a>.</p>
+
+    <!-- Quiz -->
+    <div class="quiz">
+      <h3>📝 Module 1 Quiz – Introduction to Web3</h3>
+      <form id="quizForm">
+
+        <p><b>Q1.</b> Which best describes Web1?</p>
+        <label><input type="radio" name="q1" value="A"> A. Social media & interactive apps</label><br>
+        <label><input type="radio" name="q1" value="B"> B. Static, read-only websites</label><br>
+        <label><input type="radio" name="q1" value="C"> C. Blockchain-powered internet</label><br>
+
+        <p><b>Q2.</b> True or False – In Web2, you own your data completely.</p>
+        <label><input type="radio" name="q2" value="true"> True</label><br>
+        <label><input type="radio" name="q2" value="false"> False</label><br>
+
+        <p><b>Q3.</b> Which is an example of a Web3 wallet?</p>
+        <label><input type="radio" name="q3" value="A"> A. Facebook</label><br>
+        <label><input type="radio" name="q3" value="B"> B. MetaMask</label><br>
+        <label><input type="radio" name="q3" value="C"> C. YouTube</label><br>
+
+        <p><b>Q4.</b> NFT stands for Non-________ Token.</p>
+        <input type="text" name="q4" placeholder="Your answer">
+
+        <p><b>Q5.</b> What are gas fees in Web3?</p>
+        <label><input type="radio" name="q5" value="A"> A. Fuel charges for your car</label><br>
+        <label><input type="radio" name="q5" value="B"> B. Hidden costs on websites</label><br>
+        <label><input type="radio" name="q5" value="C"> C. Transaction fees paid to miners/validators</label><br>
+
+        <p><b>Q6.</b> Short Answer – Why is Web3 different from Web2?</p>
+        <textarea name="q6" rows="2" cols="50"></textarea>
+
+        <p><b>Q7.</b> Bonus: Imagine you earn a rare sword (NFT) in a game.<br>
+        In Web2, who controls it? In Web3, who controls it?</p>
+        <textarea name="q7" rows="2" cols="50"></textarea>
+
+        <br>
+        <button type="button" id="submitQuiz">Submit Quiz</button>
+      </form>
+
+      <p id="result"></p>
+      <button id="nextModule">🚀 Go to Next Module</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("submitQuiz").addEventListener("click", function(){
+      const form = document.forms["quizForm"];
+      let score = 0;
+
+      if(form.q1.value === "B") score++;
+      if(form.q2.value === "false") score++;
+      if(form.q3.value === "B") score++;
+      if(form.q4.value.trim().toLowerCase() === "fungible") score++;
+      if(form.q5.value === "C") score++;
+      if(form.q6.value.trim().length > 5) score++;
+      if(form.q7.value.toLowerCase().includes("web2") && form.q7.value.toLowerCase().includes("web3")) score++;
+
+      const result = document.getElementById("result");
+      if(score >= 6){
+        result.innerHTML = `<span class="correct">✅ Great job! You passed with ${score}/7.</span>`;
+        document.getElementById("nextModule").style.display = "inline-block";
+      } else {
+        result.innerHTML = `<span class="wrong">❌ You scored ${score}/7. Review the content and try again.</span>`;
+      }
+    });
+
+    document.getElementById("nextModule").onclick = ()=>{
+      window.location.href = "module2.html";
+    };
+  </script>
+</body>
+</html>

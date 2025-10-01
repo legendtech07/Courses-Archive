@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web3 & Blockchain Mastery – Module 3</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f4f7fb; color: #222;
+      line-height: 1.6;
+    }
+    header {
+      background: #2c3e50;
+      color: white; padding: 20px;
+      text-align: center;
+    }
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      color: #2c3e50;
+      margin-top: 30px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .quiz {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    button {
+      background: #2c3e50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover { background: #1a252f; }
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    #nextModuleBtn {
+      display: none;
+      margin-top: 20px;
+      background: #27ae60;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🌐 Web3 & Blockchain Mastery</h1>
+  <h2>Module 3 – Cryptocurrency Essentials</h2>
+</header>
+
+<main>
+  <section class="card">
+    <h2>1️⃣ Understanding Bitcoin & Ethereum</h2>
+    <h3>🔹 Bitcoin (BTC)</h3>
+    <ul>
+      <li>First cryptocurrency (2009, Satoshi Nakamoto).</li>
+      <li>Works like digital cash → peer-to-peer payments without banks.</li>
+      <li>Limited supply: 21 million BTC total.</li>
+      <li>Used mainly as <strong>store of value</strong> (“digital gold”).</li>
+      <li>Very secure, but slower with higher fees.</li>
+    </ul>
+
+    <h3>🔹 Ethereum (ETH)</h3>
+    <ul>
+      <li>Launched in 2015 by Vitalik Buterin.</li>
+      <li>More than money → it’s a platform for <strong>dApps</strong>.</li>
+      <li>Supports <strong>smart contracts</strong> (self-executing programs).</li>
+      <li>Key uses: NFTs, DeFi apps, gaming, DAOs.</li>
+    </ul>
+
+    <p>👉 <b>Summary:</b> Bitcoin = 💰 digital money. Ethereum = 🏗️ digital economy.</p>
+  </section>
+
+  <section class="card">
+    <h2>2️⃣ Stablecoins and Altcoins</h2>
+    <h3>🔹 Stablecoins</h3>
+    <p>Cryptocurrencies pegged to real-world assets (USD, gold) to reduce volatility.</p>
+    <ul>
+      <li>USDT (Tether) – pegged to USD</li>
+      <li>USDC (USD Coin) – pegged to USD</li>
+      <li>DAI – decentralized stablecoin</li>
+    </ul>
+    <p><em>Example:</em> 1 USDT = $1 (stable, unlike BTC which fluctuates).</p>
+
+    <h3>🔹 Altcoins</h3>
+    <p>Any crypto other than Bitcoin. Examples: Solana, Cardano, Ripple, Dogecoin.</p>
+    <p><b>⚡ Warning:</b> Many altcoins are risky & speculative → research first!</p>
+  </section>
+
+  <section class="card">
+    <h2>3️⃣ How to Safely Buy, Sell & Store Crypto</h2>
+    <h3>🔹 Buying & Selling</h3>
+    <p>Use trusted exchanges (Binance, Coinbase, Kraken, KuCoin).</p>
+
+    <h3>🔹 Storing</h3>
+    <ul>
+      <li><b>Centralized exchange wallet:</b> Easy, but risky if hacked.</li>
+      <li><b>Hot wallet (MetaMask, Trust Wallet):</b> Convenient, but online.</li>
+      <li><b>Cold wallet (Ledger, Trezor):</b> Safest (offline storage).</li>
+    </ul>
+    <p>👉 Rule: <b>“Not your keys, not your coins.”</b></p>
+
+    <h3>🔹 Safety Tips</h3>
+    <ul>
+      <li>Enable 2FA always.</li>
+      <li>Never share private keys/seed phrase.</li>
+      <li>Avoid phishing scams.</li>
+      <li>Only invest what you can afford to lose.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>✅ Module 3 Recap</h2>
+    <ul>
+      <li>Bitcoin = 💰 digital money. Ethereum = 🏗️ smart contracts economy.</li>
+      <li>Stablecoins = stable value. Altcoins = all other cryptos.</li>
+      <li>Wallets: Hot (convenience) vs Cold (safety).</li>
+      <li>Security = protect your keys & use trusted exchanges.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>🔥 Mini-Exercise</h2>
+    <ul>
+      <li>Visit <a href="https://coinmarketcap.com" target="_blank">CoinMarketCap</a> and check top 10 cryptos.</li>
+      <li>Compare BTC, ETH, and USDT price movements daily.</li>
+    </ul>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="quiz">
+    <h2>📝 Module 3 Quiz – Cryptocurrency Essentials</h2>
+    <form id="quizForm">
+      <p><b>Q1.</b> Which of the following statements is TRUE about Bitcoin?</p>
+      <label><input type="radio" name="q1" value="B"> First cryptocurrency ever created</label><br>
+      <label><input type="radio" name="q1" value="A"> Unlimited supply of coins</label><br>
+      <label><input type="radio" name="q1" value="C"> Mainly used for NFTs</label><br>
+      <label><input type="radio" name="q1" value="D"> Created in 2015</label><br><br>
+
+      <p><b>Q2.</b> Ethereum is only used as digital money, similar to Bitcoin.</p>
+      <label><input type="radio" name="q2" value="False"> False</label><br>
+      <label><input type="radio" name="q2" value="True"> True</label><br><br>
+
+      <p><b>Q3.</b> A cryptocurrency pegged to USD is called a ________.</p>
+      <input type="text" name="q3" placeholder="Your answer"><br><br>
+
+      <p><b>Q4.</b> Which is a stablecoin?</p>
+      <label><input type="radio" name="q4" value="B"> USDC</label><br>
+      <label><input type="radio" name="q4" value="A"> Solana</label><br>
+      <label><input type="radio" name="q4" value="C"> Bitcoin</label><br>
+      <label><input type="radio" name="q4" value="D"> Dogecoin</label><br><br>
+
+      <p><b>Q5.</b> Short Answer – What does “Not your keys, not your coins” mean?</p>
+      <textarea name="q5" rows="2" cols="50"></textarea><br><br>
+
+      <p><b>Q6.</b> Which wallet type is safest?</p>
+      <label><input type="radio" name="q6" value="C"> Cold wallet (Ledger, Trezor)</label><br>
+      <label><input type="radio" name="q6" value="A"> Exchange wallet</label><br>
+      <label><input type="radio" name="q6" value="B"> Hot wallet</label><br>
+      <label><input type="radio" name="q6" value="D"> Any mobile app wallet</label><br><br>
+
+      <p><b>Q7.</b> Match each:</p>
+      <input type="text" name="q7" placeholder="e.g. 1-c, 2-a, 3-b"><br><br>
+
+      <p><b>Q8.</b> Bonus 🚀 Name two crypto risks.</p>
+      <textarea name="q8" rows="2" cols="50"></textarea><br><br>
+
+      <button type="button" onclick="checkQuiz()">Submit Quiz</button>
+    </form>
+    <p id="quizResult" class="result"></p>
+    <a href="web3-module4.html">
+    <button id="nextModuleBtn">Go to Module 4</button>
+    </a>
+  </section>
+</main>
+
+<script>
+  function checkQuiz() {
+    const form = document.forms['quizForm'];
+    let score = 0;
+
+    if(form.q1.value === "B") score++;
+    if(form.q2.value === "False") score++;
+    if(form.q3.value.trim().toLowerCase() === "stablecoin") score++;
+    if(form.q4.value === "B") score++;
+    if(form.q6.value === "C") score++;
+    if(form.q7.value.replace(/\s/g,'').toLowerCase() === "1-c,2-a,3-b") score++;
+
+    const total = 6;
+    const result = document.getElementById("quizResult");
+
+    if(score >= 5){
+      result.textContent = `✅ You passed with ${score}/${total}.`;
+      document.getElementById("nextModuleBtn").style.display = "inline-block";
+    } else {
+      result.textContent = `❌ You scored ${score}/${total}. Try again.`;
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Web3 – Module 5: Decentralized Apps (dApps)</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <style>
+    body { background: #0b1020; color: #e6eef8; }
+    .container { max-width: 1000px; margin: 28px auto; padding: 20px; }
+    pre { position: relative; }
+    button.copy-btn { position: absolute; top: 8px; right: 8px; background:#111827; color:#fff; padding:6px 8px; border-radius:6px; font-size:12px; }
+    .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04); padding:18px; border-radius:10px; box-shadow: 0 6px 18px rgba(2,6,23,0.6); }
+    a.primary { background: #f6c90e; color:#111827; padding:10px 14px; border-radius:8px; font-weight:700; }
+    .result { margin-top:12px; font-weight:700; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="mb-6">
+      <h1 class="text-3xl font-bold text-yellow-300">Module 5 — Decentralized Apps (dApps)</h1>
+      <p class="mt-2 text-gray-300">Deep dive: concepts, architecture, tooling, security, and a mini-project (NFT Minter).</p>
+    </header><section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">1) What is a dApp (short answer)</h2>
+  <p class="mt-2 text-gray-200">A dApp is an application where at least some backend logic runs on a blockchain (smart contracts). The UI can look like a normal web app, but critical state & rules live on-chain and are enforced by the blockchain.</p>
+</section>
+
+<section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">2) How dApps differ from normal (Web2) apps</h2>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li><strong>Trust model</strong>: Web2 trusts companies; dApp trusts on-chain code and consensus.</li>
+    <li><strong>Data ownership</strong>: Web2 stores data in company DBs; dApp users often hold assets in wallets they control.</li>
+    <li><strong>Governance</strong>: Web2 owners decide changes; dApps can use on-chain or community governance (DAOs).</li>
+    <li><strong>Failure modes</strong>: Web2 → server outages; dApp → chain-level issues, contract bugs, gas spikes.</li>
+  </ul>
+</section>
+
+<section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">3) dApp architecture — components & roles</h2>
+  <div class="mt-2 text-gray-200">
+    <strong>On-chain</strong>
+    <ul class="list-disc ml-6">
+      <li>Smart contracts — business logic (tokens, escrows, marketplaces).</li>
+      <li>Tokens — ERC20/ERC721/ERC1155.</li>
+      <li>Oracles — provide off-chain data to contracts.</li>
+    </ul>
+
+    <strong class="mt-3 block">Off-chain (essential)</strong>
+    <ul class="list-disc ml-6">
+      <li>Frontend/UI (React/Next/Vue) talking to contracts via ethers/web3.</li>
+      <li>Node/Provider (Infura, Alchemy) or self-hosted node.</li>
+      <li>Indexers — TheGraph or custom services for querying events.</li>
+      <li>Storage — IPFS/Arweave/nft.storage/Pinata for media & metadata.</li>
+      <li>Relayers / MetaTx — gasless UX (Biconomy, Gas Station Network).</li>
+    </ul>
+  </div>
+</section>
+
+<section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">4) Typical user flow (UX) in a dApp</h2>
+  <ol class="list-decimal ml-6 mt-2 text-gray-200">
+    <li>Open dApp UI.</li>
+    <li>Connect wallet (MetaMask / WalletConnect).</li>
+    <li>Check network — show error if wrong chain.</li>
+    <li>Read data via view calls.</li>
+    <li>User submits action → UI constructs tx and wallet signs.</li>
+    <li>User pays gas (or relayer does it).</li>
+    <li>Tx pending → confirmed → UI listens to tx hash & events.</li>
+    <li>Update UI via on-chain data & indexer results.</li>
+  </ol>
+  <p class="mt-2 text-gray-200">UX must show status (pending, confirmed, failed) clearly — gas & wait times are part of the experience.</p>
+</section>
+
+<section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">5) Common dApp categories & examples</h2>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li>DEXs / AMMs: Uniswap</li>
+    <li>Marketplaces: OpenSea</li>
+    <li>Lending: Aave, Compound</li>
+    <li>Gaming / Play-to-Earn: Axie Infinity</li>
+    <li>DAOs: Aragon, Snapshot</li>
+    <li>Identity / Social: ENS, Lens</li>
+  </ul>
+</section>
+
+<section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">6) Technology stack & developer tools</h2>
+  <div class="text-gray-200 mt-2">
+    <ul class="list-disc ml-6">
+      <li>Smart contract languages: Solidity, Vyper, Rust.</li>
+      <li>Dev frameworks: Hardhat, Foundry, Truffle.</li>
+      <li>Libraries: ethers.js, wagmi, rainbowkit.</li>
+      <li>Security: OpenZeppelin, static analyzers (Slither), fuzzers.</li>
+      <li>Indexing: The Graph, subgraphs.</li>
+      <li>Storage: IPFS, nft.storage, Arweave.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">7) Building blocks & patterns</h2>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li>Token standards: ERC-20, ERC-721, ERC-1155.</li>
+    <li>Proxy / Upgrade patterns: proxy + logic vs storage; use with caution.</li>
+    <li>Events-first design: emit events for off-chain indexers.</li>
+    <li>Optimistic UX: show optimistic update then confirm on-chain.</li>
+  </ul>
+</section>
+
+<section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">8) Security — must-have rules</h2>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li>Use audited libraries (OpenZeppelin).</li>
+    <li>Thorough tests (unit, integration).</li>
+    <li>Static analysis + fuzzing.</li>
+    <li>Use multisig for admin keys (Gnosis Safe).</li>
+    <li>Have circuit breakers (pausable contracts).</li>
+    <li>Professional audit for projects with significant funds.</li>
+  </ul>
+</section>
+
+<section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">9) Cost & gas optimization tips</h2>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li>Minimize storage writes — storage is expensive.</li>
+    <li>Prefer events over storing redundant data.</li>
+    <li>Pack variables and use calldata for external arrays.</li>
+    <li>Batch operations to save per-tx overhead.</li>
+  </ul>
+</section>
+
+<section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">10) Deployment & hosting patterns</h2>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li>Frontend: Vercel/Netlify or IPFS (Fleek).</li>
+    <li>Contracts: deploy to testnets first.</li>
+    <li>Verify contracts on explorers (Etherscan).</li>
+    <li>Use TheGraph for advanced queries.</li>
+  </ul>
+</section>
+
+<section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">11) Example mini-project — NFT Minter + Gallery (overview)</h2>
+  <p class="text-gray-200 mt-2">This starter dApp lets a user upload media → metadata to IPFS → contract mints ERC-721 pointing to IPFS → gallery shows minted NFTs.</p>
+
+  <pre class="mt-3"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-javascript">// SimpleNFT.sol (concept)
+
+// SPDX-License-Identifier: MIT pragma solidity ^0.8.9;
+
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol"; import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract SimpleNFT is ERC721URIStorage, Ownable { uint256 public nextTokenId; constructor(string memory name_, string memory symbol_) ERC721(name_, symbol_) {} function mint(address to, string memory tokenURI_) public payable returns (uint256) { uint256 tokenId = ++nextTokenId; _safeMint(to, tokenId); setTokenURI(tokenId, tokenURI); return tokenId; } } </code></pre>
+
+<p class="text-gray-200 mt-2">Notes: For production consider gas & metadata immutability. Use nft.storage, then call <code>mint(userAddress, ipfsURI)</code>.</p>
+</section>
+
+<section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">12) Indexing & search (The Graph)</h2>
+  <p class="text-gray-200 mt-2">Write a subgraph mapping contract events to entities (Token, Owner). Deploy subgraph and query via GraphQL to power galleries and feeds — cheaper/faster than scanning logs client-side.</p>
+</section>
+
+<section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">13) Advanced UX features</h2>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li>Walletless onboarding → temporary custodial wallet, encourage migration.</li>
+    <li>Gasless txs via relayers for smoother UX.</li>
+    <li>Batch minting, fiat on-ramps, offline signing for hardware wallets.</li>
+  </ul>
+</section>
+
+<section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">14) Legal & compliance notes</h2>
+  <p class="text-gray-200 mt-2">Financial dApps may need KYC/AML. IP rights matter for media you mint. Consult legal counsel if handling significant funds or regulated activities.</p>
+</section>
+
+<section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">15) Monitoring & QA</h2>
+  <ul class="list-disc ml-6 mt-2 text-gray-200">
+    <li>Tenderly & Blocknative for debugging & tx notifications.</li>
+    <li>Etherscan verification for transparency.</li>
+    <li>Run static analysis, fuzzing, and do audits for production funds.</li>
+  </ul>
+</section>
+
+<section class="card mb-4">
+  <h2 class="text-xl text-blue-300 font-semibold">16) Progressive decentralization</h2>
+  <p class="text-gray-200 mt-2">Start fast with centralized pieces, then move critical logic & data on-chain and decentralize storage and governance over time.</p>
+</section>
+
+<!-- Quiz -->
+<section class="card">
+  <h2 class="text-xl text-yellow-300 font-semibold">Module 5 – dApps Quiz</h2>
+  <form id="quiz">
+    <div class="mt-3 text-gray-200">
+      <p><strong>Q1.</strong> What is the key feature that makes a dApp different from a normal app?</p>
+      <label class="block"><input type="radio" name="q1" value="C"> A) Runs on centralized servers</label>
+      <label class="block"><input type="radio" name="q1" value="B"> B) Requires a single administrator</label>
+      <label class="block"><input type="radio" name="q1" value="C"> C) Runs on a decentralized blockchain network</label>
+      <label class="block"><input type="radio" name="q1" value="D"> D) Doesn’t require the internet</label>
+
+      <p class="mt-3"><strong>Q2.</strong> Which blockchain is the most commonly used for building dApps?</p>
+      <label class="block"><input type="radio" name="q2" value="A"> A) Ethereum</label>
+      <label class="block"><input type="radio" name="q2" value="B"> B) Bitcoin</label>
+      <label class="block"><input type="radio" name="q2" value="C"> C) Ripple</label>
+      <label class="block"><input type="radio" name="q2" value="D"> D) Dogecoin</label>
+
+      <p class="mt-3"><strong>Q3.</strong> What do dApps use instead of traditional databases?</p>
+      <label class="block"><input type="radio" name="q3" value="A"> A) MySQL</label>
+      <label class="block"><input type="radio" name="q3" value="B"> B) MongoDB</label>
+      <label class="block"><input type="radio" name="q3" value="C"> C) Blockchain ledgers</label>
+      <label class="block"><input type="radio" name="q3" value="D"> D) Google Firebase</label>
+
+      <p class="mt-3"><strong>Q4.</strong> Which of the following is an example of a dApp?</p>
+      <label class="block"><input type="radio" name="q4" value="A"> A) Instagram</label>
+      <label class="block"><input type="radio" name="q4" value="B"> B) Uniswap</label>
+      <label class="block"><input type="radio" name="q4" value="C"> C) WhatsApp</label>
+      <label class="block"><input type="radio" name="q4" value="D"> D) Facebook</label>
+
+      <p class="mt-3"><strong>Q5.</strong> What role do smart contracts play in dApps?</p>
+      <label class="block"><input type="radio" name="q5" value="A"> A) They handle UI design</label>
+      <label class="block"><input type="radio" name="q5" value="B"> B) They store private passwords</label>
+      <label class="block"><input type="radio" name="q5" value="C"> C) They define the rules and logic of the dApp</label>
+      <label class="block"><input type="radio" name="q5" value="D"> D) They speed up internet</label>
+
+      <p class="mt-3"><strong>Q6.</strong> Which characteristic is NOT true about dApps?</p>
+      <label class="block"><input type="radio" name="q6" value="A"> A) Open-source code</label>
+      <label class="block"><input type="radio" name="q6" value="B"> B) Decentralized control</label>
+      <label class="block"><input type="radio" name="q6" value="C"> C) Immutable transactions</label>
+      <label class="block"><input type="radio" name="q6" value="D"> D) Controlled by a single company</label>
+
+      <p class="mt-3"><strong>Q7.</strong> Gas fees in dApps are paid for what purpose?</p>
+      <label class="block"><input type="radio" name="q7" value="A"> A) To speed up WiFi</label>
+      <label class="block"><input type="radio" name="q7" value="B"> B) To compensate blockchain validators</label>
+      <label class="block"><input type="radio" name="q7" value="C"> C) To buy NFTs</label>
+      <label class="block"><input type="radio" name="q7" value="D"> D) To reduce app loading time</label>
+
+    </div>
+
+    <div class="mt-4">
+      <button type="button" id="submitBtn" class="bg-yellow-400 text-black px-4 py-2 rounded">Submit Quiz</button>
+      <p id="quizResult" class="result"></p>
+      <button id="nextBtn" class="primary mt-3" style="display:none">Go to Next Module</button>
+    </div>
+  </form>
+</section>
+
+<footer class="mt-6 text-gray-400">
+  <p>Mini-project: Build the NFT Minter + Gallery using the steps above. Want me to scaffold the repo for you? Say the word and I’ll produce contracts, tests, deploy scripts, and a minimal React frontend.</p>
+</footer>
+
+  </div>  <script>
+    // copy helper used by copy buttons
+    function copyCode(btn){
+      const code = btn.nextElementSibling.innerText;
+      navigator.clipboard.writeText(code).then(()=>{
+        const old = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(()=>btn.textContent = old,1400);
+      });
+    }
+
+    // Quiz logic
+    document.getElementById('submitBtn').addEventListener('click', ()=>{
+      const answers = {
+        q1: 'C',
+        q2: 'A', // Wait: in form q2 options were A?) Actually q2 is which blockchain? earlier mapping; adjust: For Q2 most used = A (Ethereum). But here q2 is 'Which blockchain is the most commonly used for building dApps?' In code we set A. But our form used A=Ethereum. So set correct answers accordingly.
+      };
+    });
+
+    // Let's implement full check properly:
+    function getValue(name){
+      const els = document.getElementsByName(name);
+      for(const el of els) if(el.checked) return el.value;
+      return null;
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', ()=>{
+      const correct = { q1: 'C', q2: 'A', q3: 'C', q4: 'B', q5: 'C', q6: 'D', q7: 'B' };
+      let score = 0; let total = Object.keys(correct).length;
+      for(const k in correct){
+        const val = getValue(k);
+        if(val === correct[k]) score++;
+      }
+      const result = document.getElementById('quizResult');
+      if(score >= 6){
+        result.innerHTML = `<span style="color:#9ae6b4">✅ Passed ${score}/${total}. You can proceed.</span>`;
+        document.getElementById('nextBtn').style.display = 'inline-block';
+      } else {
+        result.innerHTML = `<span style="color:#feb2b2">❌ ${score}/${total}. Review the content and try again.</span>`;
+      }
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', ()=>{
+      window.location.href = 'web3-module6.html';
+    });
+  </script></body>
+</html>

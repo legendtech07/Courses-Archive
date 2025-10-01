@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 7 – DeFi (Decentralized Finance)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      background: #f4f4f9;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #d940ff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,45,0,0.1);
+    }
+    .quiz {
+      background: #eef6ff;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+    .quiz h2 {
+      margin-top: 0;
+    }
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Module 7 — DeFi (Extensive)</h1><h2>1. Quick Definition — What is DeFi?</h2>
+<p><strong>Decentralized Finance (DeFi)</strong> means building financial services (lending, trading, staking, derivatives, insurance, etc.) on public blockchains so they run via smart contracts instead of centralized intermediaries.</p>
+
+<h2>2. The Core Primitives</h2>
+<ul>
+  <li><strong>Liquidity Pools (LPs):</strong> Smart contracts that hold reserves of tokens and let users trade against them.</li>
+  <li><strong>Automated Market Makers (AMMs):</strong> Algorithms like Uniswap’s <code>x*y=k</code> that price trades automatically.</li>
+  <li><strong>Lending & Borrowing:</strong> Protocols like Aave and Compound enable interest earning and borrowing with collateral.</li>
+  <li><strong>Stablecoins:</strong> Tokens like DAI, USDC, USDT maintain stable values.</li>
+  <li><strong>Staking & Liquid Staking:</strong> Lock tokens for network security and earn rewards; liquid staking gives a tradable token.</li>
+</ul>
+
+<h2>3. Common DeFi Actions</h2>
+<ul>
+  <li>Swapping tokens on a DEX.</li>
+  <li>Providing liquidity and earning LP fees.</li>
+  <li>Lending, staking, borrowing, and yield farming.</li>
+</ul>
+
+<h2>4. Important Mechanics</h2>
+<ul>
+  <li><strong>AMM pricing:</strong> <code>x*y=k</code> formula sets pool prices.</li>
+  <li><strong>Impermanent Loss:</strong> Loss LPs face when token price ratios change.</li>
+  <li><strong>Flash Loans:</strong> Uncollateralized loans repaid in one transaction.</li>
+</ul>
+
+<h2>5. Real Protocols</h2>
+<p>Examples: Uniswap, Curve, Aave, Compound, MakerDAO, Lido.</p>
+
+<h2>6. Top Risks</h2>
+<p>Smart-contract bugs, impermanent loss, liquidation, oracle manipulation, flash-loan attacks, rug-pulls, bridge exploits.</p>
+
+<h2>7. Reducing Risk</h2>
+<p>Start small, use audited protocols, verify contracts, prefer multisig teams, use hardware wallets, monitor governance.</p>
+
+<h2>8. Advanced Topics</h2>
+<p>Yield aggregators, derivatives, DeFi insurance, composable strategies.</p>
+
+<h2>9. Getting Started Playbook</h2>
+<ol>
+  <li>Create a wallet (MetaMask + hardware for security).</li>
+  <li>Fund with small amounts.</li>
+  <li>Try swapping on Uniswap.</li>
+  <li>Provide liquidity on testnets.</li>
+  <li>Test Aave/Compound lending with tiny collateral.</li>
+</ol>
+
+<h2>10. Mini-Projects</h2>
+<ul>
+  <li>Read-only LP explorer.</li>
+  <li>Testnet LP experiments.</li>
+  <li>Flash-loan sandbox study.</li>
+</ul>
+
+<h2>11. Resources</h2>
+<p>ConsenSys DeFi guides, Uniswap docs, Aave docs, Binance Academy, MakerDAO, Lido.</p>
+
+<h2>12. Recap</h2>
+<p>DeFi = open finance powered by code. Powerful, composable, but high risk.</p>
+
+<div class="quiz">
+  <h2>Module 7 – Quiz: DeFi</h2>
+  <form id="quizForm">
+    <p>1. What does “DeFi” stand for?<br>
+      <input type="radio" name="q1" value="A"> A) Decentralized Finance<br>
+      <input type="radio" name="q1" value="B"> B) Digital Fiat<br>
+      <input type="radio" name="q1" value="C"> C) Distributed Fund Interface<br>
+      <input type="radio" name="q1" value="D"> D) Direct Finance
+    </p>
+    <p>2. In DeFi, what is a liquidity pool?<br>
+      <input type="radio" name="q2" value="B"> B) A smart contract holding tokens for trading<br>
+      <input type="radio" name="q2" value="A"> A) A centralized bank account<br>
+      <input type="radio" name="q2" value="C"> C) A private fund<br>
+      <input type="radio" name="q2" value="D"> D) A blockchain explorer
+    </p>
+    <p>3. What is impermanent loss?<br>
+      <input type="radio" name="q3" value="B"> B) Loss from price changes in LP tokens<br>
+      <input type="radio" name="q3" value="A"> A) Permanent loss from hacks<br>
+      <input type="radio" name="q3" value="C"> C) Loss from gas fees<br>
+      <input type="radio" name="q3" value="D"> D) Forgotten password
+    </p>
+    <p>4. What is an AMM?<br>
+      <input type="radio" name="q4" value="A"> A) Smart contract pricing trades in pools<br>
+      <input type="radio" name="q4" value="B"> B) Bitcoin mining robot<br>
+      <input type="radio" name="q4" value="C"> C) Central bank algo<br>
+      <input type="radio" name="q4" value="D"> D) Token messenger
+    </p>
+    <p>5. Which protocol allows borrowing & lending?<br>
+      <input type="radio" name="q5" value="B"> B) Aave<br>
+      <input type="radio" name="q5" value="A"> A) Uniswap<br>
+      <input type="radio" name="q5" value="C"> C) OpenSea<br>
+      <input type="radio" name="q5" value="D"> D) MetaMask
+    </p>
+    <p>6. Why are stablecoins important?<br>
+      <input type="radio" name="q6" value="B"> B) Stable unit of account<br>
+      <input type="radio" name="q6" value="A"> A) Can’t be hacked<br>
+      <input type="radio" name="q6" value="C"> C) Always rise in value<br>
+      <input type="radio" name="q6" value="D"> D) Remove fees
+    </p>
+    <p>7. What is a flash loan?<br>
+      <input type="radio" name="q7" value="A"> A) Loan repaid in one transaction<br>
+      <input type="radio" name="q7" value="B"> B) Bank loan in 24h<br>
+      <input type="radio" name="q7" value="C"> C) NFT-only loan<br>
+      <input type="radio" name="q7" value="D"> D) Loan with no repayment
+    </p>
+    <p>8. Which is NOT a DeFi risk?<br>
+      <input type="radio" name="q8" value="D"> D) Internet connection speed<br>
+      <input type="radio" name="q8" value="A"> A) Smart contract bugs<br>
+      <input type="radio" name="q8" value="B"> B) Liquidation risk<br>
+      <input type="radio" name="q8" value="C"> C) Impermanent loss
+    </p>
+    <p>9. What is liquid staking?<br>
+      <input type="radio" name="q9" value="A"> A) Staking with tradable derivative token<br>
+      <input type="radio" name="q9" value="B"> B) Water-based staking<br>
+      <input type="radio" name="q9" value="C"> C) Instant cash staking<br>
+      <input type="radio" name="q9" value="D"> D) Bank staking
+    </p>
+    <p>10. How to reduce risk?<br>
+      <input type="radio" name="q10" value="B"> B) Read docs, start small, audited protocols<br>
+      <input type="radio" name="q10" value="A"> A) Send large amounts immediately<br>
+      <input type="radio" name="q10" value="C"> C) Ignore slippage<br>
+      <input type="radio" name="q10" value="D"> D) Use unknown bridges
+    </p>
+    <button type="button" onclick="submitQuiz()">Submit Quiz</button>
+  </form>
+  <div class="result" id="result"></div>
+</div>
+
+  </div>  <script>
+    function submitQuiz(){
+      const answers = {q1:"A", q2:"B", q3:"B", q4:"A", q5:"B", q6:"B", q7:"A", q8:"D", q9:"A", q10:"B"};
+      let score = 0;
+      let total = Object.keys(answers).length;
+      for (let key in answers){
+        let selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === answers[key]){
+          score++;
+        }
+      }
+      let resultText = `You scored ${score} out of ${total}.`;
+      if(score >= 8){
+        resultText += " ✅ Great job! You passed this module.";
+      } else {
+        resultText += " ❌ Try again to pass.";
+      }
+      document.getElementById("result").innerText = resultText;
+    }
+  </script></body>
+</html>

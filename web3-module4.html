@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web3 – Module 4: Smart Contracts</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Prism.js for syntax highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-solidity.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <style>
+    pre { position: relative; }
+    button.copy-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: #1f2937;
+      color: white;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans leading-relaxed">
+  <div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-3xl font-bold text-yellow-400 mb-4">⚡ Module 4 – Smart Contracts</h1><h2 class="text-xl font-semibold text-blue-400 mt-6">1) What is a Smart Contract?</h2>
+<p>A smart contract is a program stored on the blockchain that automatically runs when certain conditions are met. It’s like a digital agreement enforced by code instead of lawyers or banks.</p>
+
+<div class="bg-gray-800 p-4 rounded mt-4">
+  <p><strong>Example:</strong> Imagine we bet on Nigeria winning the World Cup. With a smart contract, the rule (<em>if Nigeria wins, pay Legend $100</em>) is enforced automatically by the blockchain, no middleman needed.</p>
+</div>
+
+<h2 class="text-xl font-semibold text-blue-400 mt-6">2) Key Features</h2>
+<ul class="list-disc pl-6">
+  <li>Immutable → Can’t be altered after deployment.</li>
+  <li>Transparent → Anyone can read the code.</li>
+  <li>Trustless → Executes automatically without relying on people.</li>
+  <li>Automated → Always runs as programmed.</li>
+</ul>
+
+<h2 class="text-xl font-semibold text-blue-400 mt-6">3) Real-World Uses</h2>
+<ul class="list-disc pl-6">
+  <li>DeFi (loans, staking, yield farming)</li>
+  <li>NFT minting and trading</li>
+  <li>DAOs (on-chain governance)</li>
+  <li>Supply chain tracking</li>
+  <li>Gaming and play-to-earn mechanics</li>
+</ul>
+
+<h2 class="text-xl font-semibold text-blue-400 mt-6">4) Solidity Example</h2>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-solidity">// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+contract HelloWeb3 { string public message = "Hello, Web3!";
+
+// Function to change the message
+function setMessage(string memory newMessage) public {
+    message = newMessage;
+}
+
+}</code></pre>
+
+<p class="mt-2">👉 <em>Explanation:</em> Solidity ^0.8 ensures safety, <code>public</code> lets anyone read the variable, and <code>setMessage()</code> allows updates on-chain.</p>
+
+<h2 class="text-xl font-semibold text-blue-400 mt-6">5) Deployment with Remix IDE</h2>
+<ol class="list-decimal pl-6">
+  <li>Go to <a href="https://remix.ethereum.org" class="text-yellow-400 underline">Remix IDE</a>.</li>
+  <li>Create <code>HelloWeb3.sol</code>, paste the code.</li>
+  <li>Compile with Solidity compiler.</li>
+  <li>Deploy with Injected Web3 (MetaMask connected).</li>
+  <li>Test by reading/writing <code>message</code>.</li>
+</ol>
+
+<h2 class="text-xl font-semibold text-blue-400 mt-6">6) Example Hardhat Deploy Script</h2>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-javascript">// scripts/deploy.js
+
+async function main() { const SimpleStorage = await ethers.getContractFactory("SimpleStorage"); const simple = await SimpleStorage.deploy(); await simple.deployed(); console.log("Deployed to:", simple.address); }
+
+main().catch((err) => { console.error(err); process.exit(1); });</code></pre>
+
+<h2 class="text-xl font-semibold text-blue-400 mt-6">7) Security Tips</h2>
+<ul class="list-disc pl-6">
+  <li>Use OpenZeppelin libraries for safe ERC tokens & access control.</li>
+  <li>Protect admin-only functions (<code>onlyOwner</code>).</li>
+  <li>Always test thoroughly before deploying.</li>
+  <li>Beware of reentrancy, gas inefficiency, and access misconfigurations.</li>
+</ul>
+
+<h2 class="text-xl font-semibold text-green-400 mt-6">📝 Module 4 Quiz – Smart Contracts</h2>
+<div class="bg-gray-800 p-4 rounded space-y-4">
+  <p><strong>Q1.</strong> What is a smart contract?<br>A. Digital agreement by lawyers<br>B. Self-executing program on blockchain ✅<br>C. Special cryptocurrency<br>D. Paper contract online</p>
+
+  <p><strong>Q2.</strong> True or False: Once deployed, a smart contract can be easily changed.<br>Answer: False ❌</p>
+
+  <p><strong>Q3.</strong> Fill in the Blank: The main language is <u>Solidity</u>.</p>
+
+  <p><strong>Q4.</strong> Which is NOT a use case?<br>A. DeFi ✅<br>B. NFTs ✅<br>C. Supply Chains ✅<br>D. Editing tweets ❌</p>
+
+  <p><strong>Q5.</strong> Short Answer: They’re “trustless” because the blockchain enforces execution automatically without needing trust in humans.</p>
+
+  <p><strong>Q6.</strong> Which tool is used in-browser?<br>A. MetaMask<br>B. Remix IDE ✅<br>C. Binance<br>D. Trust Wallet</p>
+
+  <p><strong>Q7.</strong> Match:<br>1. Gas Fees → c. Payment for operations<br>2. Oracles → a. Off-chain data bridges<br>3. EVM → b. Executes smart contracts</p>
+
+  <p><strong>Q8.</strong> Bonus: One risk is bugs (e.g., reentrancy). Developers minimize this with audits, testing, and secure libraries.</p>
+</div>
+
+<div class="mt-6 text-center">
+  <a href="web3-module5.html" class="bg-yellow-500 text-black px-6 py-2 rounded-lg font-semibold hover:bg-yellow-400">Go to Next Module →</a>
+</div>
+
+  </div>  <script>
+    function copyCode(btn) {
+      const code = btn.nextElementSibling.innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = "Copied!";
+        setTimeout(() => (btn.textContent = "Copy"), 1500);
+      });
+    }
+  </script></body>
+</html>

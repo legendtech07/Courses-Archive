@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web3 & Blockchain Mastery – Module 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f4f7fb; color: #222;
+      line-height: 1.6;
+    }
+    header {
+      background: #4a47a3;
+      color: white; padding: 20px;
+      text-align: center;
+    }
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      color: #4a47a3;
+      margin-top: 30px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .quiz {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    button {
+      background: #4a47a3;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover { background: #373485; }
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    #nextModuleBtn {
+      display: none;
+      margin-top: 20px;
+      background: #28a745;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🌐 Web3 & Blockchain Mastery</h1>
+  <h2>Module 2 – Blockchain Basics</h2>
+</header>
+
+<main>
+  <section class="card">
+    <h2>1️⃣ What is a Blockchain and How Does It Work?</h2>
+    <p>
+      A <strong>blockchain</strong> is a digital ledger that is:
+      <ul>
+        <li>Decentralized → not owned by one company</li>
+        <li>Immutable → once data is added, it cannot easily be changed</li>
+        <li>Transparent → anyone can see the records</li>
+      </ul>
+      <br>
+      📦 Data is grouped into blocks, and each block is linked to the previous one using a unique “hash”.  
+      This creates a secure, unbreakable chain.
+    </p>
+    <p><em>⚡ Example:</em> If someone changes one block, all the following blocks break → making it secure.</p>
+  </section>
+
+  <section class="card">
+    <h2>2️⃣ Public vs Private Blockchains</h2>
+    <p><strong>Public Blockchain:</strong> Open to anyone, decentralized. Example: <em>Bitcoin, Ethereum</em></p>
+    <p><strong>Private Blockchain:</strong> Restricted access, often used by companies. Example: <em>Hyperledger</em></p>
+    <p><em>👉 Public blockchain = a park (anyone can enter). Private blockchain = your house (only invited people).</em></p>
+  </section>
+
+  <section class="card">
+    <h2>3️⃣ Ethereum vs Bitcoin vs Solana</h2>
+    <table border="1" cellpadding="8" cellspacing="0">
+      <tr>
+        <th>Blockchain</th><th>Purpose</th><th>Speed & Fees</th><th>Smart Contracts?</th><th>Example Use</th>
+      </tr>
+      <tr>
+        <td>Bitcoin</td><td>Digital money</td><td>Slow (7 tx/sec), high fees</td><td>❌ No</td><td>Store of value (“digital gold”)</td>
+      </tr>
+      <tr>
+        <td>Ethereum</td><td>dApps & NFTs</td><td>Slower, higher fees</td><td>✅ Yes (Solidity)</td><td>DeFi, NFTs, DAOs</td>
+      </tr>
+      <tr>
+        <td>Solana</td><td>Fast & scalable apps</td><td>65,000 tx/sec, low fees</td><td>✅ Yes (Rust, C, C++)</td><td>Gaming, DeFi, fast payments</td>
+      </tr>
+    </table>
+    <p>⚡ Summary: Bitcoin = 💰 money, Ethereum = 🧩 smart contracts, Solana = ⚡ fast apps</p>
+  </section>
+
+  <section class="card">
+    <h2>🔥 Mini-Exercise</h2>
+    <ul>
+      <li>Check <a href="https://etherscan.io" target="_blank">Etherscan</a> to see live Ethereum transactions.</li>
+      <li>Compare fees on Ethereum vs Solana.</li>
+    </ul>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="quiz">
+    <h2>📝 Module 2 Quiz – Blockchain Basics</h2>
+    <form id="quizForm">
+      <p><b>Q1.</b> What is a blockchain?</p>
+      <label><input type="radio" name="q1" value="B"> A digital ledger of transactions</label><br>
+      <label><input type="radio" name="q1" value="A"> A social media platform</label><br>
+      <label><input type="radio" name="q1" value="C"> A type of cryptocurrency</label><br>
+      <label><input type="radio" name="q1" value="D"> An online bank</label><br><br>
+
+      <p><b>Q2.</b> True or False: Once data is added to blockchain, it can be easily changed.</p>
+      <label><input type="radio" name="q2" value="False"> False</label><br>
+      <label><input type="radio" name="q2" value="True"> True</label><br><br>
+
+      <p><b>Q3.</b> Each block in a blockchain contains transactions, a timestamp, and a ______ of the previous block.</p>
+      <input type="text" name="q3" placeholder="Your answer"><br><br>
+
+      <p><b>Q4.</b> Which of these is an example of a private blockchain?</p>
+      <label><input type="radio" name="q4" value="C"> Hyperledger</label><br>
+      <label><input type="radio" name="q4" value="A"> Bitcoin</label><br>
+      <label><input type="radio" name="q4" value="B"> Ethereum</label><br>
+      <label><input type="radio" name="q4" value="D"> Solana</label><br><br>
+
+      <p><b>Q5.</b> Public vs Private blockchain difference in 1 sentence:</p>
+      <textarea name="q5" rows="2" cols="50"></textarea><br><br>
+
+      <p><b>Q6.</b> Which blockchain is known as “digital gold”?</p>
+      <label><input type="radio" name="q6" value="A"> Bitcoin</label><br>
+      <label><input type="radio" name="q6" value="B"> Ethereum</label><br>
+      <label><input type="radio" name="q6" value="C"> Solana</label><br><br>
+
+      <p><b>Q7.</b> Match each blockchain with its purpose (1=Bitcoin, 2=Ethereum, 3=Solana):</p>
+      <input type="text" name="q7" placeholder="e.g. 1-a, 2-c, 3-b"><br><br>
+
+      <p><b>Q8.</b> Bonus 🚀 Why is Solana faster than Ethereum?</p>
+      <textarea name="q8" rows="2" cols="50"></textarea><br><br>
+
+      <button type="button" onclick="checkQuiz()">Submit Quiz</button>
+    </form>
+    <p id="quizResult" class="result"></p>
+    <a href="web3-module3.html">
+    <button id="nextModuleBtn">Go to Module 3</button>
+    </a>
+  </section>
+</main>
+
+<script>
+  function checkQuiz() {
+    const form = document.forms['quizForm'];
+    let score = 0;
+
+    if(form.q1.value === "B") score++;
+    if(form.q2.value === "False") score++;
+    if(form.q3.value.trim().toLowerCase() === "hash") score++;
+    if(form.q4.value === "C") score++;
+    if(form.q6.value === "A") score++;
+    if(form.q7.value.replace(/\s/g,'').toLowerCase() === "1-a,2-c,3-b") score++;
+
+    const total = 6; // required questions
+    const result = document.getElementById("quizResult");
+
+    if(score >= 5){
+      result.textContent = `✅ Great! You passed with ${score}/${total}.`;
+      document.getElementById("nextModuleBtn").style.display = "inline-block";
+    } else {
+      result.textContent = `❌ You scored ${score}/${total}. Try again.`;
+    }
+  }
+</script>
+
+</body>
+</html>

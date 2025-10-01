@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Completion</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: white;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .container {
+      padding: 40px 20px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #f1c40f;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+    }
+    input {
+      padding: 12px;
+      width: 280px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    button {
+      background: #f1c40f;
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin: 10px;
+    }
+    button:hover {
+      background: #d4ac0d;
+    }
+    #certificate {
+      display: none;
+      margin-top: 40px;
+      background: white;
+      color: #2c3e50;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 8px solid #f1c40f;
+      position: relative;
+    }
+    #certificate h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+    #certificate h3 {
+      font-size: 1.5rem;
+      margin: 20px 0;
+      color: #000;
+    }
+    .cert-name {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #1abc9c;
+      margin: 15px 0;
+    }
+    .cert-footer {
+      margin-top: 30px;
+      font-size: 1rem;
+      color: #555;
+    }
+    .seal {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: #f1c40f;
+      color: black;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 0.9rem;
+      border: 3px solid #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🎉 Congratulations!</h1>
+    <p>You’ve completed the <b>Web3 & Blockchain Mastery Course</b>.</p>
+    <p>Enter your name to generate your certificate:</p>
+    <input type="text" id="studentName" placeholder="Enter your full name">
+    <br>
+    <button onclick="generateCertificate()">Generate Certificate</button>
+  </div>
+
+  <div id="certificate">
+    <h2>Certificate of Completion</h2>
+    <p>This certifies that</p>
+    <div class="cert-name" id="certName"></div>
+    <p>has successfully completed the</p>
+    <h3>Web3 & Blockchain Mastery Course</h3>
+    <p>Under the guidance of</p>
+    <h3>Legend Tech</h3>
+    <div class="cert-footer">
+      Issued on <span id="date"></span>
+    </div>
+    <div class="seal">LEGEND<br>TECH</div>
+    <br><br>
+    <button onclick="downloadCertificate()">⬇ Download Certificate</button>
+  </div>
+
+  <!-- html2canvas library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <script>
+    function generateCertificate() {
+      let name = document.getElementById("studentName").value;
+      if (name.trim() === "") {
+        alert("Please enter your name.");
+        return;
+      }
+      document.getElementById("certName").innerText = name;
+      document.getElementById("certificate").style.display = "block";
+
+      // Show today's date
+      let today = new Date();
+      let options = { year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById("date").innerText = today.toLocaleDateString(undefined, options);
+
+      // Scroll to certificate
+      document.getElementById("certificate").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function downloadCertificate() {
+      let cert = document.getElementById("certificate");
+      html2canvas(cert, { scale: 2 }).then(canvas => {
+        let link = document.createElement("a");
+        link.download = "Web3_Certificate.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      });
+    }
+  </script>
+
+</body>
+</html>
