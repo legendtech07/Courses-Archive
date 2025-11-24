@@ -1,0 +1,138 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PLC Level 1 — Basics</title>
+  <style>
+    :root{--accent:#34d399;--bg:#0e1624;--card:#101b2b;--muted:#9aa4b2;--glass:rgba(255,255,255,0.04)}
+    body{margin:0;font-family:Inter,system-ui;background:#0b1220;color:#e8f0ff;}
+    .container{max-width:900px;margin:32px auto;padding:20px;background:var(--glass);border-radius:12px;backdrop-filter:blur(4px);}
+    h1{font-size:26px;margin-bottom:10px}
+    h2{margin-top:28px;font-size:20px;color:#7ce9c8}
+    h3{color:#7ce9c8;margin-top:20px}
+    p{line-height:1.6}
+    ul,ol{margin-left:20px}
+    .card{background:var(--card);padding:18px;border-radius:10px;margin:20px 0}
+    code,pre{background:#0b1525;padding:8px;border-radius:6px;color:#c7faff}
+    pre{overflow-x:auto}
+    .next{display:inline-block;margin-top:20px;padding:10px 14px;background:var(--accent);color:#000;text-decoration:none;border-radius:8px;font-weight:600}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔥 LEVEL 1 — PLC BASICS</h1>
+    <p>Full Beginner → Comfortable Operator.</p><div class="card">
+  <h2>⭐ 1. WHAT EXACTLY IS A PLC?</h2>
+  <p>A PLC is a rugged industrial computer that:</p>
+  <ul>
+    <li>Reads data from sensors</li>
+    <li>Processes your logic</li>
+    <li>Controls machines</li>
+  </ul>
+  <p>It replaces old relay circuits with a flexible, programmable system — basically a super-stable machine brain.</p>
+</div>
+
+<div class="card">
+  <h2>⭐ 2. PLC INPUTS & OUTPUTS (I/O)</h2>
+  <p>PLC works by receiving <strong>INPUTS</strong> and giving <strong>OUTPUTS</strong>.</p>
+
+  <h3>🔵 INPUTS (What the PLC reads)</h3>
+  <ul>
+    <li>Push buttons</li>
+    <li>Limit switches</li>
+    <li>Sensors</li>
+    <li>Temperature probes</li>
+    <li>Float switches</li>
+  </ul>
+  <p>Digital → ON/OFF<br>Analog → Ranges like 0–10V, 4–20mA</p>
+  <p>Examples: I0.0, I0.1</p>
+
+  <h3>🔴 OUTPUTS (What the PLC controls)</h3>
+  <ul>
+    <li>Motors</li>
+    <li>Solenoid valves</li>
+    <li>Lights</li>
+    <li>Alarms</li>
+  </ul>
+  <p>Examples: Q0.0, Q0.1</p>
+</div>
+
+<div class="card">
+  <h2>⭐ 3. THE PLC SCAN CYCLE</h2>
+  <p>Every PLC repeats a fast loop:</p>
+  <ol>
+    <li>Reads Inputs</li>
+    <li>Executes Program</li>
+    <li>Updates Outputs</li>
+    <li>Repeat</li>
+  </ol>
+  <p>Happens in milliseconds — that’s why PLCs react instantly.</p>
+</div>
+
+<div class="card">
+  <h2>⭐ 4. LADDER LOGIC (Your First Language)</h2>
+  <p>Looks like electrical circuits but digital.</p>
+  <ul>
+    <li>—| |— Normally Open</li>
+    <li>—|/|— Normally Closed</li>
+    <li>( ) Coil</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>⭐ 5. FIRST PLC PROGRAMS</h2>
+
+  <h3>🟩 Example 1 — Motor ON when Button Pressed</h3>
+  <pre><code>I0.0 ----( Q0.0 )</code></pre>
+
+  <h3>🟦 Example 2 — Latching Circuit</h3>
+  <pre><code>I0.0 ---| |------( Q0.0 )
+       | 
+       |---| |----
+            Q0.0</code></pre>
+
+  <h3>🟧 Example 3 — Start/Stop Logic</h3>
+  <pre><code>I1.0 --|/|----| |----( Q0.0 )
+
+STOP         START |---| |--- Q0.0</code></pre> </div>
+
+<div class="card">
+  <h2>⭐ 6. INTRODUCTION TO TIMERS</h2>
+  <p>TON: Timer On Delay.</p>
+  <pre><code>I0.0 ---- TON T1 (5s)
+
+T1.DN ----( Q0.0 )</code></pre> </div>
+
+<div class="card">
+  <h2>⭐ 7. INTRO TO COUNTERS</h2>
+  <pre><code>I0.0 ---- CTU C1 (10)
+
+C1.DN ----( Q0.0 )</code></pre> </div>
+
+<div class="card">
+  <h2>⭐ 8. SAFETY BASICS</h2>
+  <ul>
+    <li>STOP button = normally closed</li>
+    <li>E-stops must break power</li>
+    <li>Motors need interlocks</li>
+    <li>Dangerous outputs must default to OFF</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🧪 LEVEL 1 PRACTICAL EXERCISES</h2>
+  <ol>
+    <li>Light turns ON only when two buttons are pressed (AND).</li>
+    <li>Buzzer activates if sensor A OR sensor B is triggered.</li>
+    <li>Motor runs exactly 8 seconds after START.</li>
+    <li>Create a latching circuit with STOP.</li>
+  </ol>
+</div>
+
+<a href="PLC2.html" class="next">Next ➜</a>
+
+  </div>
+</body>
+</html>

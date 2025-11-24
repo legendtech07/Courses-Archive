@@ -1,0 +1,191 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What is a PLC? — Quick Guide</title>
+  <style>
+    :root{--accent:#0b5cff;--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--glass:rgba(255,255,255,0.03)}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:#e6eef6;background:linear-gradient(180deg,#071028 0%, #071a2a 60%);}
+    .container{max-width:980px;margin:36px auto;padding:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.6);}
+    header{display:flex;align-items:center;gap:16px}
+    .logo{width:64px;height:64px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6ad1ff);display:flex;align-items:center;justify-content:center;font-weight:700;color:#02102a}
+    h1{margin:0;font-size:24px}
+    p.lead{color:var(--muted);margin:8px 0 20px}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:20px}
+    @media (max-width:880px){.grid{grid-template-columns:1fr} .toc{order:2}}
+    .card{background:var(--card);padding:18px;border-radius:10px}
+    .section{margin-bottom:18px}
+    h2{margin:6px 0 10px;font-size:18px}
+    ul{margin:8px 0 12px;padding-left:20px}
+    code, pre{background:var(--glass);padding:8px;border-radius:6px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;color:#dff0ff}
+    pre{overflow:auto}
+    .scan{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+    .cycle{display:flex;gap:8px;align-items:center}
+    .dot{width:12px;height:12px;border-radius:50%;background:#24313f;box-shadow:0 4px 10px rgba(2,6,23,0.6)}
+    .dot.on{background:var(--accent);box-shadow:0 8px 24px rgba(11,92,255,0.18)}
+    .right{display:flex;flex-direction:column;gap:12px}
+    .toc h3{margin:0 0 8px}
+    .download{display:inline-block;padding:10px 12px;border-radius:8px;background:var(--accent);color:white;text-decoration:none}
+    footer{margin-top:20px;color:var(--muted);font-size:13px}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.04);color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">PLC</div>
+      <div>
+        <h1>⭐ What is a PLC? — Simple + Deep Explanation</h1>
+        <p class="lead">A concise, web-friendly guide to Programmable Logic Controllers: how they think, what’s inside, and the basic concepts you must master.</p>
+      </div>
+    </header><div class="grid">
+  <main>
+    <section class="card section">
+      <h2>Quick Definition</h2>
+      <p>A <strong>PLC</strong> (Programmable Logic Controller) is an industrial computer used to control machines, automate processes, and make decisions based on inputs and outputs. Think of a PLC like a super-reliable robot brain sitting inside factories, controlling things like:</p>
+      <ul>
+        <li>Elevators</li>
+        <li>Traffic lights</li>
+        <li>Water pumps</li>
+        <li>Bottle-filling machines</li>
+        <li>Conveyor belts</li>
+        <li>Robots</li>
+        <li>Power stations</li>
+      </ul>
+      <p>A PLC takes <strong>INPUTS → makes a DECISION → sends OUTPUTS</strong>.</p>
+    </section>
+
+    <section class="card section">
+      <h2>🎮 How a PLC Thinks — The PLC Scan Cycle</h2>
+      <div class="scan">
+        <p>Every PLC works in a loop (scan cycle):</p>
+        <ol>
+          <li><strong>Read Inputs</strong> — Sensors, switches, buttons, temperature probes</li>
+          <li><strong>Execute Program</strong> — Your ladder logic or structured text</li>
+          <li><strong>Update Outputs</strong> — Motors, lights, relays, actuators</li>
+          <li><strong>Repeat very fast</strong> — Like 1–10 milliseconds</li>
+        </ol>
+        <p>This cycle is called the <strong>SCAN CYCLE</strong> — the soul of a PLC.</p>
+
+        <div class="cycle" aria-hidden="true">
+          <div class="dot on" id="d1"></div><div class="dot" id="d2"></div><div class="dot" id="d3"></div><div class="dot" id="d4"></div>
+        </div>
+        <small style="color:var(--muted)">(Simulation: Inputs → Execute → Outputs → Repeat)</small>
+      </div>
+      <script>
+        // simple visual scan animator (runs only when the page is open)
+        (function(){
+          const ids=['d1','d2','d3','d4']; let i=0;
+          setInterval(()=>{
+            ids.forEach(id=>document.getElementById(id).classList.remove('on'));
+            document.getElementById(ids[i]).classList.add('on');
+            i=(i+1)%ids.length;
+          },400);
+        })();
+      </script>
+    </section>
+
+    <section class="card section">
+      <h2>🧱 PLC Hardware Components (Understanding the Box)</h2>
+      <ol>
+        <li><strong>Power Supply</strong> — Runs on 24V DC or 220V AC.</li>
+        <li><strong>CPU (The Brain)</strong> — Processes your program.</li>
+        <li><strong>Input Module</strong> — Accepts signals like 0/24V, digital sensors, analog inputs (4–20mA, 0–10V).</li>
+        <li><strong>Output Module</strong> — Controls motors, relays, solenoids, indicators.</li>
+        <li><strong>Communication Ports</strong> — Ethernet, Modbus, RS-485, USB.</li>
+        <li><strong>Memory</strong> — Stores logic, timers, counters, internal bits.</li>
+      </ol>
+    </section>
+
+    <section class="card section">
+      <h2>⚙️ PLC Programming Languages (IEC 61131-3)</h2>
+      <p>Common languages:</p>
+      <ul>
+        <li><strong>Ladder Diagram (LD)</strong> — Most popular</li>
+        <li><strong>Function Block Diagram (FBD)</strong></li>
+        <li><strong>Structured Text (ST)</strong> — like Python</li>
+        <li><strong>Instruction List (IL)</strong> — old</li>
+        <li><strong>Sequential Function Charts (SFC)</strong></li>
+      </ul>
+      <p>We’ll focus on Ladder Logic and Structured Text because they dominate industry usage.</p>
+    </section>
+
+    <section class="card section">
+      <h2>🔌 Basic Concepts You Must Master</h2>
+
+      <h3>1. Digital Inputs & Outputs</h3>
+      <p>Digital = ON/OFF. Examples: push button → Input; motor → Output. If input is ON → output can be ON.</p>
+
+      <h3>2. Ladder Logic Basics (LD)</h3>
+      <p>Ladder logic looks like electrical circuits.</p>
+      <pre><code>// Example: Turn on a motor when a button is pressed
+
+// Ladder pseudo: // [Button] ---- (Motor) // If button = 1 -> Motor = 1 </code></pre>
+
+<h3>3. Latching / Holding Circuits</h3>
+      <p>Used to keep something ON even after removing the button.</p>
+      <pre><code>// Start ---( )--- Motor
+
+//             | //           Motor (This latches the motor on) </code></pre>
+
+<h3>4. Timers (TON, TOFF, TP)</h3>
+      <p>TON = Timer On Delay. Example: Turn on a fan 5 seconds after pressing a button.</p>
+
+      <h3>5. Counters (CTU, CTD)</h3>
+      <p>Count things: bottles, cars, people, pulses. Example: start alarm after 10 items.</p>
+
+      <h3>6. Internal Bits / Flags</h3>
+      <p>Markers used inside PLC like variables: M0.0, B3:0/2, I/O memory.</p>
+
+      <h3>7. Analog Inputs (0–10V / 4–20mA)</h3>
+      <p>Used for temperature, pressure, level sensors. Convert analog values into engineering scaled values.</p>
+    </section>
+
+    <section class="card section">
+      <h2>Quick Ladder Example (Structured Text equivalent)</h2>
+      <pre><code>// Structured Text pseudo equivalent
+
+IF Button = TRUE THEN Motor := TRUE; END_IF;
+
+// Latching example in ST IF Start THEN Motor := TRUE; END_IF; IF Stop THEN Motor := FALSE; END_IF; </code></pre> </section>
+
+<footer>
+      <div class="badge">Practical tip: When designing PLC logic, always plan for safety, watchdogs, and clear states after power loss.</div>
+    </footer>
+
+<div style="margin-top:20px;text-align:center;">
+  <a href="PLC1.html" class="download" style="background:#34d399;">Next ➜</a>
+</div>
+      </main><aside class="toc card">
+    <h3>Contents</h3>
+    <ol>
+      <li>Quick Definition</li>
+      <li>Scan Cycle</li>
+      <li>Hardware Components</li>
+      <li>Programming Languages</li>
+      <li>Basic Concepts</li>
+      <li>Code Examples</li>
+    </ol>
+
+    <div style="margin-top:12px">
+      <a class="download" id="downloadBtn">Download PLC.html</a>
+    </div>
+
+    <p style="color:var(--muted);margin-top:12px;font-size:13px">Created for learning and quick reference. Copy, modify, and use in training or documentation.</p>
+    <script>
+      document.getElementById('downloadBtn').addEventListener('click',function(){
+        const html = document.documentElement.outerHTML;
+        const blob = new Blob([html],{type:'text/html'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'PLC.html'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+      });
+    </script>
+  </aside>
+</div>
+
+  </div>
+</body>
+</html>

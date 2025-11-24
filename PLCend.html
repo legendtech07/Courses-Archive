@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siemens PLC Master Course - Legend Tech</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="PLCend.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets-logo.png" alt="Legend Tech Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#course-content">Course Content</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#certificate">Certificate</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold">Siemens PLC Master Course</h1>
+                    <p class="lead">Comprehensive training on Siemens Programmable Logic Controllers from basics to advanced programming</p>
+                    <div class="d-flex align-items-center mt-4">
+                        <div class="me-4">
+                            <i class="fas fa-play-circle fa-2x me-2"></i>
+                            <span>15+ Hours of Content</span>
+                        </div>
+                        <div class="me-4">
+                            <i class="fas fa-file-certificate fa-2x me-2"></i>
+                            <span>Certificate of Completion</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <img src="PLC.png" alt="Siemens PLC" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-lg-8">
+                <!-- Course Overview -->
+                <section class="mb-5">
+                    <h2 class="mb-4">Course Overview</h2>
+                    <p>This comprehensive course is designed to take you from a beginner to an advanced level in Siemens PLC programming. You'll learn everything from basic ladder logic to advanced structured text programming, HMI integration, and industrial network configuration.</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <h5>What You'll Learn:</h5>
+                            <ul>
+                                <li>Siemens TIA Portal environment</li>
+                                <li>Ladder Logic (LAD) programming</li>
+                                <li>Function Block Diagram (FBD)</li>
+                                <li>Structured Text (SCL) programming</li>
+                                <li>HMI integration and design</li>
+                                <li>Industrial communication protocols</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Course Requirements:</h5>
+                            <ul>
+                                <li>Basic understanding of electrical circuits</li>
+                                <li>Computer with Windows OS</li>
+                                <li>TIA Portal software (trial version available)</li>
+                                <li>No prior PLC experience required</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Course Content -->
+                <section id="course-content" class="mb-5">
+                    <h2 class="mb-4">Course Content</h2>
+                    
+                    <!-- Module 1 -->
+                    <div class="card module-card" id="module-1">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title">Module 1: Introduction to Siemens PLC</h5>
+                                <span class="completion-badge" style="display: none;">Completed</span>
+                            </div>
+                            <p class="card-text">Learn the fundamentals of Siemens PLC systems, hardware components, and the TIA Portal software environment.</p>
+                            <button class="btn btn-outline-primary btn-sm toggle-content">Show Content</button>
+                            
+                            <div class="module-content mt-3" style="display: none;">
+                                <h6>Topics Covered:</h6>
+                                <ul>
+                                    <li>Siemens PLC families (S7-1200, S7-1500)</li>
+                                    <li>TIA Portal installation and setup</li>
+                                    <li>Creating your first project</li>
+                                    <li>Hardware configuration</li>
+                                </ul>
+                                
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/ksQrkag-nHI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                
+                                <div class="quiz-container">
+                                    <h6>Knowledge Check:</h6>
+                                    <div class="quiz-question">
+                                        <p>1. Which Siemens PLC series is typically used for mid-range applications?</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q1" id="q1a1">
+                                            <label class="form-check-label" for="q1a1">S7-200</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q1" id="q1a2">
+                                            <label class="form-check-label" for="q1a2">S7-1200</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q1" id="q1a3">
+                                            <label class="form-check-label" for="q1a3">S7-400</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary complete-module" data-module="1">Mark as Complete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 2 -->
+                    <div class="card module-card" id="module-2">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title">Module 2: Ladder Logic Programming</h5>
+                                <span class="completion-badge" style="display: none;">Completed</span>
+                            </div>
+                            <p class="card-text">Master the fundamentals of Ladder Logic (LAD) programming, the most widely used PLC programming language.</p>
+                            <button class="btn btn-outline-primary btn-sm toggle-content">Show Content</button>
+                            
+                            <div class="module-content mt-3" style="display: none;">
+                                <h6>Topics Covered:</h6>
+                                <ul>
+                                    <li>Basic ladder logic elements</li>
+                                    <li>Contacts, coils, and boxes</li>
+                                    <li>Creating simple logic circuits</li>
+                                    <li>Timers and counters</li>
+                                    <li>Programming best practices</li>
+                                </ul>
+                                
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/Ei4_HqzUFBs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                
+                                <div class="quiz-container">
+                                    <h6>Knowledge Check:</h6>
+                                    <div class="quiz-question">
+                                        <p>1. In ladder logic, what does a normally open contact represent?</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q2" id="q2a1">
+                                            <label class="form-check-label" for="q2a1">A closed circuit when the input is FALSE</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q2" id="q2a2">
+                                            <label class="form-check-label" for="q2a2">An open circuit when the input is TRUE</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q2" id="q2a3">
+                                            <label class="form-check-label" for="q2a3">A closed circuit when the input is TRUE</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary complete-module" data-module="2">Mark as Complete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 3 -->
+                    <div class="card module-card" id="module-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title">Module 3: Function Block Diagram (FBD)</h5>
+                                <span class="completion-badge" style="display: none;">Completed</span>
+                            </div>
+                            <p class="card-text">Learn Function Block Diagram programming, a graphical language that represents signal and data flow through function blocks.</p>
+                            <button class="btn btn-outline-primary btn-sm toggle-content">Show Content</button>
+                            
+                            <div class="module-content mt-3" style="display: none;">
+                                <h6>Topics Covered:</h6>
+                                <ul>
+                                    <li>FBD programming basics</li>
+                                    <li>Standard function blocks</li>
+                                    <li>Creating custom function blocks</li>
+                                    <li>Data flow programming</li>
+                                    <li>Comparing FBD with LAD</li>
+                                </ul>
+                                
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/r_SKF2mUJ6g" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                
+                                <div class="quiz-container">
+                                    <h6>Knowledge Check:</h6>
+                                    <div class="quiz-question">
+                                        <p>1. What is the main advantage of using Function Block Diagram programming?</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q3" id="q3a1">
+                                            <label class="form-check-label" for="q3a1">It's easier for electricians to understand</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q3" id="q3a2">
+                                            <label class="form-check-label" for="q3a2">It clearly shows data flow and complex functions</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q3" id="q3a3">
+                                            <label class="form-check-label" for="q3a3">It uses less memory than other languages</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary complete-module" data-module="3">Mark as Complete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 4 -->
+                    <div class="card module-card" id="module-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title">Module 4: Structured Text (SCL) Programming</h5>
+                                <span class="completion-badge" style="display: none;">Completed</span>
+                            </div>
+                            <p class="card-text">Master Structured Text programming, a high-level language similar to Pascal for complex algorithms and data processing.</p>
+                            <button class="btn btn-outline-primary btn-sm toggle-content">Show Content</button>
+                            
+                            <div class="module-content mt-3" style="display: none;">
+                                <h6>Topics Covered:</h6>
+                                <ul>
+                                    <li>SCL syntax and structure</li>
+                                    <li>Variables and data types</li>
+                                    <li>Control structures (IF, CASE, FOR, WHILE)</li>
+                                    <li>Functions and function blocks</li>
+                                    <li>Advanced data handling</li>
+                                </ul>
+                                
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/JAi1vf970KM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                
+                                <div class="quiz-container">
+                                    <h6>Knowledge Check:</h6>
+                                    <div class="quiz-question">
+                                        <p>1. Which data structure in SCL is most suitable for storing multiple values of the same type?</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q4" id="q4a1">
+                                            <label class="form-check-label" for="q4a1">STRUCT</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q4" id="q4a2">
+                                            <label class="form-check-label" for="q4a2">ARRAY</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q4" id="q4a3">
+                                            <label class="form-check-label" for="q4a3">ENUM</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary complete-module" data-module="4">Mark as Complete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 5 -->
+                    <div class="card module-card" id="module-5">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title">Module 5: HMI Integration and Design</h5>
+                                <span class="completion-badge" style="display: none;">Completed</span>
+                            </div>
+                            <p class="card-text">Learn to create and integrate Human Machine Interfaces for monitoring and controlling your PLC systems.</p>
+                            <button class="btn btn-outline-primary btn-sm toggle-content">Show Content</button>
+                            
+                            <div class="module-content mt-3" style="display: none;">
+                                <h6>Topics Covered:</h6>
+                                <ul>
+                                    <li>HMI basics and types</li>
+                                    <li>Creating screens and navigation</li>
+                                    <li>Tag management and connections</li>
+                                    <li>Alarms and events</li>
+                                    <li>Data logging and trends</li>
+                                </ul>
+                                
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/videoseries?list=PLPtob0wlAlH6Uq47z_6rJBEbTuU5i_h8C" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                
+                                <div class="quiz-container">
+                                    <h6>Knowledge Check:</h6>
+                                    <div class="quiz-question">
+                                        <p>1. What is the primary purpose of an HMI in an automation system?</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q5" id="q5a1">
+                                            <label class="form-check-label" for="q5a1">To execute complex calculations</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q5" id="q5a2">
+                                            <label class="form-check-label" for="q5a2">To provide visualization and operator control</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q5" id="q5a3">
+                                            <label class="form-check-label" for="q5a3">To store backup programs</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary complete-module" data-module="5">Mark as Complete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 6 -->
+                    <div class="card module-card" id="module-6">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title">Module 6: Industrial Communication Protocols</h5>
+                                <span class="completion-badge" style="display: none;">Completed</span>
+                            </div>
+                            <p class="card-text">Understand and implement various industrial communication protocols used in Siemens automation systems.</p>
+                            <button class="btn btn-outline-primary btn-sm toggle-content">Show Content</button>
+                            
+                            <div class="module-content mt-3" style="display: none;">
+                                <h6>Topics Covered:</h6>
+                                <ul>
+                                    <li>PROFIBUS and PROFINET</li>
+                                    <li>Industrial Ethernet</li>
+                                    <li>AS-Interface</li>
+                                    <li>Modbus TCP and RTU</li>
+                                    <li>OPC UA communication</li>
+                                </ul>
+                                
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/videoseries?list=PLfpyK80e7OlmZxg6hK6pMEaJqzD24Qk_q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                
+                                <div class="quiz-container">
+                                    <h6>Knowledge Check:</h6>
+                                    <div class="quiz-question">
+                                        <p>1. Which protocol is commonly used for real-time industrial Ethernet communication in Siemens systems?</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q6" id="q6a1">
+                                            <label class="form-check-label" for="q6a1">Modbus TCP</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q6" id="q6a2">
+                                            <label class="form-check-label" for="q6a2">PROFINET</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q6" id="q6a3">
+                                            <label class="form-check-label" for="q6a3">EtherNet/IP</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary complete-module" data-module="6">Mark as Complete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 7 -->
+                    <div class="card module-card" id="module-7">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title">Module 7: Advanced Programming Techniques</h5>
+                                <span class="completion-badge" style="display: none;">Completed</span>
+                            </div>
+                            <p class="card-text">Explore advanced programming concepts including organization blocks, diagnostics, and optimization techniques.</p>
+                            <button class="btn btn-outline-primary btn-sm toggle-content">Show Content</button>
+                            
+                            <div class="module-content mt-3" style="display: none;">
+                                <h6>Topics Covered:</h6>
+                                <ul>
+                                    <li>Organization Blocks (OBs)</li>
+                                    <li>Function Blocks (FCs) and Data Blocks (DBs)</li>
+                                    <li>Diagnostics and troubleshooting</li>
+                                    <li>Program optimization</li>
+                                    <li>Safety programming basics</li>
+                                </ul>
+                                
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/videoseries?list=PLtGimRyb0S0haP_iO4TsAnZDF5rdOzBza" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                
+                                <div class="quiz-container">
+                                    <h6>Knowledge Check:</h6>
+                                    <div class="quiz-question">
+                                        <p>1. Which organization block is executed when a hardware interrupt occurs?</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q7" id="q7a1">
+                                            <label class="form-check-label" for="q7a1">OB1 - Main Program Cycle</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q7" id="q7a2">
+                                            <label class="form-check-label" for="q7a2">OB40 - Hardware Interrupt</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q7" id="q7a3">
+                                            <label class="form-check-label" for="q7a3">OB100 - Warm Restart</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary complete-module" data-module="7">Mark as Complete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 8 -->
+                    <div class="card module-card" id="module-8">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title">Module 8: Real-World Projects and Applications</h5>
+                                <span class="completion-badge" style="display: none;">Completed</span>
+                            </div>
+                            <p class="card-text">Apply your knowledge to real-world scenarios with comprehensive projects covering various industrial applications.</p>
+                            <button class="btn btn-outline-primary btn-sm toggle-content">Show Content</button>
+                            
+                            <div class="module-content mt-3" style="display: none;">
+                                <h6>Topics Covered:</h6>
+                                <ul>
+                                    <li>Conveyor system control</li>
+                                    <li>Packaging machine automation</li>
+                                    <li>Temperature control system</li>
+                                    <li>Batch processing</li>
+                                    <li>System documentation</li>
+                                </ul>
+                                
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/gpB4600keWA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                
+                                <div class="quiz-container">
+                                    <h6>Knowledge Check:</h6>
+                                    <div class="quiz-question">
+                                        <p>1. What is the most important aspect to consider when designing a safety-related control system?</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q8" id="q8a1">
+                                            <label class="form-check-label" for="q8a1">Cost optimization</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q8" id="q8a2">
+                                            <label class="form-check-label" for="q8a2">Compliance with safety standards</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q8" id="q8a3">
+                                            <label class="form-check-label" for="q8a3">Ease of programming</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary complete-module" data-module="8">Mark as Complete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Progress Section -->
+                <section class="progress-section">
+                    <h4>Your Progress</h4>
+                    <div class="progress mb-3" style="height: 25px;">
+                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                    </div>
+                    <p class="text-center"><span id="completed-modules">0</span> out of 8 modules completed</p>
+                    
+                    <div class="mt-4">
+                        <h5>Modules</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Module 1: Introduction
+                                <span class="badge bg-secondary rounded-pill">0%</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Module 2: Ladder Logic
+                                <span class="badge bg-secondary rounded-pill">0%</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Module 3: Function Block Diagram
+                                <span class="badge bg-secondary rounded-pill">0%</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Module 4: Structured Text
+                                <span class="badge bg-secondary rounded-pill">0%</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Module 5: HMI Integration
+                                <span class="badge bg-secondary rounded-pill">0%</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Module 6: Communication Protocols
+                                <span class="badge bg-secondary rounded-pill">0%</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Module 7: Advanced Programming
+                                <span class="badge bg-secondary rounded-pill">0%</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Module 8: Real-World Projects
+                                <span class="badge bg-secondary rounded-pill">0%</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mt-4 text-center">
+                        <button class="btn btn-primary" id="generate-certificate" disabled>Generate Certificate</button>
+                    </div>
+                </section>
+                
+                <!-- Resources Section -->
+                <section class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Course Resources</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <a href="#" class="text-decoration-none">
+                                    <i class="fas fa-download me-2"></i>TIA Portal Installation Guide
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="#" class="text-decoration-none">
+                                    <i class="fas fa-book me-2"></i>Siemens PLC Programming Manual
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="#" class="text-decoration-none">
+                                    <i class="fas fa-file-code me-2"></i>Sample Programs
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="#" class="text-decoration-none">
+                                    <i class="fas fa-question-circle me-2"></i>FAQ & Troubleshooting
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <!-- Certificate Section -->
+        <section id="certificate" class="certificate-section">
+            <h2 class="mb-4">Certificate of Completion</h2>
+            <p>Congratulations on completing the Siemens PLC Master Course! Please fill in your name to generate your certificate.</p>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <form id="certificate-form">
+                        <div class="mb-3">
+                            <label for="student-name" class="form-label">Your Full Name</label>
+                            <input type="text" class="form-control" id="student-name" placeholder="Enter your name as it should appear on the certificate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="completion-date" class="form-label">Completion Date</label>
+                            <input type="date" class="form-control" id="completion-date" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Generate Certificate</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="certificate-preview">
+                        <p>Your certificate preview will appear here</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="certificate-design" id="certificate-output" style="display: none;">
+                <div class="certificate-header">
+                    <img src="assets-logo.png" alt="Legend Tech Logo" class="certificate-logo">
+                    <div class="certificate-title">Certificate of Completion</div>
+                    <div class="certificate-subtitle">Siemens PLC Master Course</div>
+                </div>
+                
+                <div class="certificate-body">
+                    <p>This is to certify that</p>
+                    <div class="certificate-student-name" id="cert-name">Student Name</div>
+                    <p>has successfully completed the Siemens PLC Master Course offered by Legend Tech, demonstrating proficiency in Siemens TIA Portal, Ladder Logic, Function Block Diagram, Structured Text programming, HMI integration, and industrial communication protocols.</p>
+                    <p>Course completed on: <span id="cert-date">Completion Date</span></p>
+                </div>
+                
+                <div class="certificate-footer">
+                    <div class="signature-area">
+                        <div class="signature-line"></div>
+                        <p>Instructor</p>
+                    </div>
+                    <div class="signature-area">
+                        <div class="signature-line"></div>
+                        <p>Legend Tech Director</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <button class="btn btn-success" id="download-certificate" style="display: none;">Download Certificate</button>
+                <button class="btn btn-outline-secondary" id="print-certificate" style="display: none;">Print Certificate</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Legend Tech</h5>
+                    <p>Providing industry-leading automation training and certification.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p>Contact us: info@legendtech.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <p>&copy; 2025 Legend Tech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="PLCend.js"></script>
+</body>
+</html>

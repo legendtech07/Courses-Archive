@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PLC Programming – Level 2 (Siemens Edition)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0c0f18;
+      color: #fff;
+      padding: 20px;
+      line-height: 1.7;
+    }
+    h1, h2 {
+      color: #4ae3ff;
+    }
+    .ladder {
+      background: #111520;
+      padding: 15px;
+      border-left: 4px solid #4ae3ff;
+      margin: 10px 0;
+      white-space: pre-wrap;
+      font-family: "Courier New", monospace;
+    }
+    .btn {
+      display: inline-block;
+      background: #1dd1a1;
+      padding: 12px 22px;
+      color: #000;
+      text-decoration: none;
+      margin-top: 30px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🔥 PLC Programming – Level 2 (Siemens Edition)</h1>
+<p>
+Strap in — this is where you start thinking like a controls engineer.  
+We’ll use Siemens–TIA Portal addressing:
+</p>
+
+<ul>
+  <li><strong>I0.0</strong> = Digital Input</li>
+  <li><strong>Q0.0</strong> = Digital Output</li>
+  <li><strong>M0.0</strong> = Memory Bit</li>
+  <li><strong>T1</strong> = Timer</li>
+  <li><strong>C1</strong> = Counter</li>
+</ul>
+
+<h2>⭐ 1. INTERLOCKS</h2>
+<p>Used to prevent dangerous conditions like Forward + Reverse running together.</p>
+
+<div class="ladder">
+Forward logic:
+I0.0    Q0.1   --| |----|/|--------( Q0.0 )
+
+Reverse logic:
+I0.1    Q0.0   --| |----|/|--------( Q0.1 )
+</div>
+
+<p>✔ Prevents motor from burning<br>✔ Used in every industry</p>
+
+<h2>⭐ 2. SIEMENS LATCHING CIRCUIT</h2>
+
+<p><strong>Method 1 — Classic latch</strong></p>
+<div class="ladder">
+STOP (NC)  I1.0  --|/|-----| |----( Q0.0 )
+                I0.0 START    |
+                              |----| |----
+                                   Q0.0
+</div>
+
+<p><strong>Method 2 — Siemens SET/RESET</strong></p>
+<div class="ladder">
+I0.0 ----( S Q0.0 )
+I1.0 ----( R Q0.0 )
+</div>
+
+<h2>⭐ 3. EDGE DETECTORS</h2>
+<p>Used when you want a single pulse instead of continuous ON.</p>
+
+<div class="ladder">
+Rising Edge:
+I0.0 --[ P ]----( M0.0 )
+
+Falling Edge:
+I0.0 --[ N ]----( M0.1 )
+</div>
+
+<h2>⭐ 4. TIMERS — TON, TOF, TP</h2>
+
+<p><strong>TON – ON Delay</strong></p>
+<div class="ladder">
+I0.0 ----TON T1 (PT = 5s)
+T1.Q ---------( Q0.0 )
+</div>
+
+<p><strong>TOF – OFF Delay</strong></p>
+<div class="ladder">
+I0.0 ----TOF T2 (PT = 3s)
+T2.Q ---------( Q0.1 )
+</div>
+
+<p><strong>TP – Pulse Timer</strong></p>
+<div class="ladder">
+I0.0 --[ P ]-- TP T3 (PT = 2s)
+T3.Q ---------( Q0.2 )
+</div>
+
+<h2>⭐ 5. COUNTERS — CTU & CTD</h2>
+
+<p><strong>CTU – Count Up</strong></p>
+<div class="ladder">
+I0.0 --[ P ]-- CTU C1 (PV = 10)
+C1.Q ---------( Q0.0 )
+</div>
+
+<p><strong>CTD – Count Down</strong></p>
+<div class="ladder">
+I0.1 --[ P ]-- CTD C1
+
+Reset:
+I0.2 ----( R C1 )
+</div>
+
+<h2>⭐ 6. COMBINING TIMERS + INTERLOCKS</h2>
+
+<p>Example: Motor only runs if the tank level is OK and another motor is NOT running.</p>
+
+<div class="ladder">
+I0.0   I0.3   Q0.5  --| |----| |----|/|---TON T4 (20s)
+T4.Q ------------------------( Q0.0 )
+</div>
+
+<h2>⭐ 7. BASIC SAFETY STOP LOGIC</h2>
+<p>STOP button must be Normally Closed (NC).</p>
+
+<div class="ladder">
+I1.0 (STOP NC) --| |--------( R Q0.0 )
+</div>
+
+<h2>⭐ 8. MINI PROJECT — Conveyor System</h2>
+
+<p><strong>Inputs:</strong></p>
+<ul>
+  <li>I0.0 – START</li>
+  <li>I0.1 – STOP (NC)</li>
+  <li>I0.3 – JAM SENSOR (NC)</li>
+</ul>
+
+<p><strong>Output:</strong></p>
+<ul>
+  <li>Q0.0 – Motor</li>
+</ul>
+
+<p><strong>Requirements:</strong></p>
+<ul>
+  <li>Motor starts instantly when START is pressed</li>
+  <li>Stops immediately if JAM occurs</li>
+  <li>Cannot restart for 10 seconds after stopping</li>
+  <li>STOP button overrides everything</li>
+</ul>
+
+<p>Your task: Write the full ladder logic.</p>
+
+<a href="PLC3.html" class="btn">Next →</a>
+
+</body>
+</html>

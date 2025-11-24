@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PLC Course — Level 3 (Enhanced)</title>
+  <style>
+    :root{--bg:#0b1220;--panel:#0f1724;--accent:#00b4d8;--muted:#94a3b8;--ok:#22c55e;--warn:#f59e0b}
+    html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;background:linear-gradient(180deg,var(--bg),#071024);color:#e6eef8}
+    .app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+    /* Side menu */
+    .sidebar{background:linear-gradient(180deg,#071225,#0d1b2a);padding:18px;border-right:1px solid rgba(255,255,255,0.03);box-shadow:inset 0 1px 0 rgba(255,255,255,0.02)}
+    .logo{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+    .logo .dot{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#7b61ff);display:flex;align-items:center;justify-content:center;font-weight:800;color:#021024}
+    .logo h3{margin:0;font-size:16px}
+    nav{margin-top:12px}
+    .nav-item{padding:10px 12px;border-radius:8px;color:var(--muted);display:flex;align-items:center;gap:8px;margin-bottom:6px;cursor:pointer}
+    .nav-item.active{background:rgba(0,180,216,0.08);color:var(--accent);box-shadow:0 6px 20px rgba(3,6,23,0.6);}
+    .nav-item:hover{background:rgba(255,255,255,0.02);color:#cfeffd}
+    .small{font-size:12px;color:#9fb7c9}
+    /* Topbar */
+    header.topbar{background:transparent;padding:18px 22px;border-bottom:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center}
+    .title{font-size:20px;color:#bfefff}
+    .breadcrumb{color:var(--muted);font-size:13px}
+    /* Content */
+    main{padding:22px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);padding:18px;border-radius:10px;margin-bottom:16px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    h2{margin:0 0 8px 0;color:#a6e3ff}
+    p.lead{color:var(--muted);margin-top:0}
+    pre.ladder{background:#071322;color:#dff7ff;padding:12px;border-radius:8px;overflow:auto}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    /* animated badges */
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--muted);font-size:13px}
+    /* mini HMI preview */
+    .hmi{background:#071725;border-radius:8px;padding:12px;color:#dff7ff;border:1px solid rgba(255,255,255,0.03)}
+    .hmi .meter{height:14px;background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden}
+    .hmi .fill{height:100%;background:linear-gradient(90deg,var(--accent),#7b61ff);width:40%;transition:width 600ms ease}
+    /* form */
+    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    input[type=text],textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.01);color:#e6eef8}
+    textarea{min-height:88px}
+    .row{display:flex;gap:12px}
+    .row>div{flex:1}
+    .actions{display:flex;gap:12px;align-items:center}
+    button.primary{background:var(--accent);border:none;color:#001;padding:10px 14px;border-radius:8px;font-weight:700;cursor:pointer}
+    button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:8px 12px;border-radius:8px}
+    /* next level */
+    .next{display:flex;justify-content:flex-end;margin-top:12px}
+    /* responsive */
+    @media(max-width:900px){.app{grid-template-columns:1fr} .sidebar{display:none} .grid{grid-template-columns:1fr}}
+    /* subtle entrance animation */
+    .fade-in{animation:fadeUp .6s ease both}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none}}
+    /* progress */
+    .progress{height:8px;background:rgba(255,255,255,0.03);border-radius:999px;overflow:hidden}
+    .progress .bar{height:100%;background:linear-gradient(90deg,var(--accent),#7b61ff);width:66%;transition:width 600ms}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar fade-in">
+      <div class="logo">
+        <div class="dot">LT</div>
+        <div>
+          <h3>Legend Tech — PLC Academy</h3>
+          <div class="small">Siemens Edition • Level 3</div>
+        </div>
+      </div><nav>
+    <div class="nav-item" data-target="overview">Overview</div>
+    <div class="nav-item" data-target="analog">Analog Inputs & Scaling</div>
+    <div class="nav-item" data-target="dbs">Data Blocks & Memory</div>
+    <div class="nav-item" data-target="pid">PID & Comparators</div>
+    <div class="nav-item" data-target="alarms">Alarms & HMI</div>
+    <div class="nav-item" data-target="network">Networking</div>
+    <div class="nav-item" data-target="project">Mini Project</div>
+  </nav>
+
+  <div style="position:absolute;bottom:20px;left:18px;right:18px">
+    <div class="small">Progress</div>
+    <div class="progress" style="margin-top:8px"><div class="bar" id="progBar"></div></div>
+    <div style="margin-top:10px" class="small">Saved answers: <span id="savedCount">0</span></div>
+  </div>
+</aside>
+
+<div>
+  <header class="topbar fade-in">
+    <div>
+      <div class="title">LEVEL 3 — Analog, DBs, PID, HMI & Networking</div>
+      <div class="breadcrumb">Siemens • S7-1200 style • TIA Portal mindset</div>
+    </div>
+    <div class="actions">
+      <button class="ghost" id="resetBtn">Reset Answers</button>
+      <button class="primary" id="saveBtn">Save Answers</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="overview" class="card fade-in">
+      <h2>Welcome to Level 3</h2>
+      <p class="lead">We cover analog scaling (4–20mA / 0–10V), Data Blocks (DBs), memory organization, comparators, PID_Compact, alarms, HMI linking, and industrial networking (PROFINET & Modbus).</p>
+      <div class="grid">
+        <div>
+          <div class="card">
+            <h3>Analog Raw Ranges</h3>
+            <p>Siemens raw integer ranges:</p>
+            <ul>
+              <li><b>0–10V</b>: 0 … 27648</li>
+              <li><b>4–20mA</b>: 5530 … 27648</li>
+            </ul>
+            <p class="small">Use <code>NORM_X</code> and <code>SCALE_X</code> to convert to engineering units.</p>
+          </div>
+
+          <div class="card">
+            <h3>PID_Compact</h3>
+            <p>PV → PID_Compact → CV. Configure tuning and limits. Use for level, temp, flow, pressure control.</p>
+          </div>
+        </div>
+
+        <aside>
+          <div class="hmi card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong>HMI Preview</strong><span class="badge">Live Demo</span></div>
+            <div>Level: <span id="levelPct">40%</span></div>
+            <div class="meter" style="margin-top:8px"><div class="fill" id="fillBar"></div></div>
+            <div style="margin-top:10px;display:flex;gap:8px"><button class="primary" id="incBtn">+5%</button><button class="ghost" id="decBtn">-5%</button></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="analog" class="card fade-in">
+      <h2>Analog Inputs & Scaling</h2>
+      <p class="lead">Raw → NORM_X → SCALE_X → Engineering units.</p>
+      <pre class="ladder">Example: 0–10V temperature 0–100°C
+
+Raw range: 0 .. 27648 NORM_X  -> 0.0 .. 1.0 SCALE_X -> 0 .. 100 (°C)</pre> <div style="display:flex;gap:12px;margin-top:12px;align-items:center"> <div style="flex:1"> <label>Simulated raw input (0–27648)</label> <input id="rawInput" type="text" value="13824"> </div> <div style="width:220px"> <label>Engineering range</label> <select id="engRange"> <option value="0,100">0 → 100</option> <option value="-50,150">-50 → 150</option> <option value="0,10">0 → 10</option> </select> </div> <div style="width:160px;display:flex;flex-direction:column;gap:8px"> <label> </label> <button class="primary" id="scaleBtn">Scale</button> </div> </div> <div style="margin-top:12px;display:flex;gap:12px"> <div class="card" style="flex:1"> <strong>Normalized (0.0 - 1.0)</strong> <div id="normOut">0.50</div> </div> <div class="card" style="flex:1"> <strong>Engineering Value</strong> <div id="engOut">50.0</div> </div> </div> </section>
+
+<section id="dbs" class="card fade-in">
+      <h2>Data Blocks & Memory Organization</h2>
+      <p class="lead">Use DBs to keep structured, named variables. They survive cycles (optional) and make your project readable.</p>
+      <pre class="ladder">DB1
+
+Level (REAL) PumpStatus (BOOL) HighAlarm (BOOL) LowAlarm (BOOL) Timestamp (TIME)</pre>
+
+<div style="margin-top:12px">
+        <label>Suggested DB variables (editable)</label>
+        <textarea id="dbVars">Level, PumpStatus, HighAlarm, LowAlarm, Timestamp</textarea>
+      </div>
+    </section>
+
+    <section id="pid" class="card fade-in">
+      <h2>PID & Comparators</h2>
+      <p class="lead">PID_Compact block interfaces: PV, SP, CV. Tune P/I/D and set output limits. Use comparators for alarms and setpoints.</p>
+
+      <div class="row" style="margin-top:12px">
+        <div>
+          <label>Setpoint (SP)</label>
+          <input id="sp" type="text" value="70">
+        </div>
+        <div>
+          <label>Process Value (PV)</label>
+          <input id="pv" type="text" value="40">
+        </div>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:12px;align-items:center">
+        <button class="primary" id="computePid">Compute CV (demo)</button>
+        <div id="cvOut" style="font-weight:700;color:var(--accent)"></div>
+      </div>
+    </section>
+
+    <section id="alarms" class="card fade-in">
+      <h2>Alarms & HMI Binding</h2>
+      <p class="lead">Use PLC bits for alarm booleans and bind them to HMI message texts. HMI buttons write DB tags.</p>
+
+      <div class="row" style="margin-top:12px">
+        <div>
+          <label>High alarm threshold (%)</label>
+          <input id="highThreshold" type="text" value="90">
+        </div>
+        <div>
+          <label>Low alarm threshold (%)</label>
+          <input id="lowThreshold" type="text" value="10">
+        </div>
+      </div>
+
+      <div style="margin-top:12px">
+        <label>Alarm Logic (Preview)</label>
+        <pre class="ladder">IF Level &gt;= HighThreshold THEN HighAlarm = TRUE
+
+IF Level <= LowThreshold THEN LowAlarm = TRUE</pre> </div> </section>
+
+<section id="network" class="card fade-in">
+      <h2>Networking — PROFINET & Modbus Basics</h2>
+      <p class="lead">S7-1200 has Ethernet for PROFINET and supports Modbus TCP/RTU via communication blocks. Use mapping to exchange registers with VFDs and HMIs.</p>
+      <pre class="ladder">Example: Write CV to VFD register 40001 (Modbus TCP)
+
+Use MB_WRITE / MB_READ or ProfiNet IO data mapping in TIA.</pre> </section>
+
+<section id="project" class="card fade-in">
+      <h2>LEVEL 3 Mini Project — Tank Level Control</h2>
+      <p class="lead">You must implement scaling, pump logic with hysteresis, alarms, and HMI tags. Answer the questions and save your solution.</p>
+
+      <div>
+        <label>1. How will you scale the analog input? (explain)</label>
+        <textarea id="ans1" placeholder="e.g. use NORM_X then SCALE_X mapping 5530..27648 -> 0..100%"></textarea>
+
+        <label style="margin-top:12px">2. Pump start/stop logic (describe ladder or pseudocode)</label>
+        <textarea id="ans2" placeholder="e.g. Start when Level > 70% with latch and OFF when <40%"></textarea>
+
+        <label style="margin-top:12px">3. Alarm logic</label>
+        <textarea id="ans3" placeholder="e.g. HighAlarm when Level >=90%, LowAlarm when <=10%"></textarea>
+
+        <label style="margin-top:12px">4. DB variables (list)</label>
+        <textarea id="ans4" placeholder="e.g. DB1.Level, DB1.PumpStatus, DB1.HighAlarm, DB1.LowAlarm, DB1.SP"></textarea>
+
+        <div class="next">
+          <button class="ghost" id="previewBtn">Preview Certificate</button>
+          <button class="primary" id="submitAnswers">Save & Mark Complete</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="next">
+      <a href="PLC4.html" class="primary" id="toNext">Next Level →</a>
+    </div>
+  </main>
+</div>
+
+  </div>  <script>
+    // navigation
+    document.querySelectorAll('.nav-item').forEach(it=>it.addEventListener('click',()=>{
+      document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+      it.classList.add('active');
+      const id = it.getAttribute('data-target');
+      document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
+    }));
+    // set first active
+    document.querySelector('.nav-item').classList.add('active');
+
+    // HMI demo controls
+    const fillBar = document.getElementById('fillBar');
+    const levelPct = document.getElementById('levelPct');
+    const incBtn = document.getElementById('incBtn');
+    const decBtn = document.getElementById('decBtn');
+    let current = 40;
+    function updateHMI(){ fillBar.style.width = current + '%'; levelPct.innerText = current + '%'; }
+    incBtn.onclick = ()=>{ current = Math.min(100,current+5); updateHMI(); }
+    decBtn.onclick = ()=>{ current = Math.max(0,current-5); updateHMI(); }
+    updateHMI();
+
+    // scaling demo
+    document.getElementById('scaleBtn').addEventListener('click',()=>{
+      const raw = Number(document.getElementById('rawInput').value) || 0;
+      const eng = document.getElementById('engRange').value.split(',').map(Number);
+      // Assume raw range 0..27648 (0-10V example)
+      const norm = Math.max(0,Math.min(1, raw / 27648));
+      const engVal = norm * (eng[1]-eng[0]) + eng[0];
+      document.getElementById('normOut').innerText = norm.toFixed(4);
+      document.getElementById('engOut').innerText = engVal.toFixed(3);
+    });
+
+    // quick PID demo (toy proportional)
+    document.getElementById('computePid').addEventListener('click',()=>{
+      const sp = Number(document.getElementById('sp').value)||0;
+      const pv = Number(document.getElementById('pv').value)||0;
+      const Kp = 1.0; // demo
+      const cv = Math.max(0,Math.min(100, (sp - pv) * Kp ));
+      document.getElementById('cvOut').innerText = 'CV ≈ ' + cv.toFixed(2) + '%';
+    });
+
+    // alarm thresholds update
+    const highThreshold = document.getElementById('highThreshold');
+    const lowThreshold = document.getElementById('lowThreshold');
+
+    // persistence: save answers to localStorage
+    const keys = ['ans1','ans2','ans3','ans4','dbVars'];
+    function saveAnswers(){
+      localStorage.setItem('plc3_ans1',document.getElementById('ans1').value);
+      localStorage.setItem('plc3_ans2',document.getElementById('ans2').value);
+      localStorage.setItem('plc3_ans3',document.getElementById('ans3').value);
+      localStorage.setItem('plc3_ans4',document.getElementById('ans4').value);
+      localStorage.setItem('plc3_db',document.getElementById('dbVars').value);
+      updateSavedCount();
+      alert('Answers saved locally.');
+    }
+    document.getElementById('saveBtn').addEventListener('click',saveAnswers);
+    document.getElementById('submitAnswers').addEventListener('click',()=>{
+      saveAnswers();
+      // mark complete flag
+      localStorage.setItem('plc3_completed','1');
+      document.getElementById('progBar').style.width = '100%';
+      alert('Module marked complete — nice work!');
+    });
+    document.getElementById('resetBtn').addEventListener('click',()=>{
+      if(confirm('Reset saved answers?')){
+        localStorage.removeItem('plc3_ans1');localStorage.removeItem('plc3_ans2');localStorage.removeItem('plc3_ans3');localStorage.removeItem('plc3_ans4');localStorage.removeItem('plc3_db');localStorage.removeItem('plc3_completed');updateSavedCount();alert('Reset complete');
+      }
+    });
+    function updateSavedCount(){
+      let c = 0; if(localStorage.getItem('plc3_ans1')) c++; if(localStorage.getItem('plc3_ans2')) c++; if(localStorage.getItem('plc3_ans3')) c++; if(localStorage.getItem('plc3_ans4')) c++; document.getElementById('savedCount').innerText = c;
+      const done = localStorage.getItem('plc3_completed'); if(done) document.getElementById('progBar').style.width = '100%';
+    }
+    // load saved on open
+    window.addEventListener('load',()=>{
+      if(localStorage.getItem('plc3_ans1')) document.getElementById('ans1').value = localStorage.getItem('plc3_ans1');
+      if(localStorage.getItem('plc3_ans2')) document.getElementById('ans2').value = localStorage.getItem('plc3_ans2');
+      if(localStorage.getItem('plc3_ans3')) document.getElementById('ans3').value = localStorage.getItem('plc3_ans3');
+      if(localStorage.getItem('plc3_ans4')) document.getElementById('ans4').value = localStorage.getItem('plc3_ans4');
+      if(localStorage.getItem('plc3_db')) document.getElementById('dbVars').value = localStorage.getItem('plc3_db');
+      updateSavedCount();
+    });
+
+    // preview certificate (simple modal-like new window)
+    document.getElementById('previewBtn').addEventListener('click',()=>{
+      const name = prompt('Enter your name for certificate preview','Legend Student');
+      if(!name) return;
+      const w = window.open('','_blank','width=900,height=650');
+      const date = new Date().toLocaleDateString();
+      w.document.write(`<html><head><title>Certificate</title><style>body{font-family:Arial;background:#071022;color:#fff;padding:40px} .cert{max-width:800px;margin:auto;background:#fff;color:#022;border-radius:12px;padding:28px;border:8px solid #00b4d8} h1{margin:0;color:#002}</style></head><body><div class="cert"><h1>Certificate of Completion</h1><p>This certifies that</p><h2>${name}</h2><p>has completed the PLC Level 3 course — Web3 & Controls Academy</p><p style="margin-top:18px">Issued: ${date}</p><p style="text-align:right;margin-top:28px">Legend Tech</p></div></body></html>`);w.document.close();
+});
+
+  </script>
+</body>
+</html>
