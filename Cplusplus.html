@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete C++ Programming Course | Legend Tech</title>
+    <link rel="stylesheet" href="Cplusplus.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="logo.png" alt="Legend Tech Logo" class="logo">
+                <h1>Legend Tech C++ Programming Course</h1>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+                <div class="progress-text">Progress: <span id="progressText">0%</span></div>
+            </div>
+        </header>
+
+        <main>
+            <div class="course-content">
+                <div class="course-header">
+                    <h2>Complete C++ Programming Masterclass</h2>
+                    <p class="course-description">From beginner to advanced level. Master C++ programming with hands-on exercises and real-world projects.</p>
+                    <div class="course-stats">
+                        <span><i class="fas fa-clock"></i> 40+ Hours Content</span>
+                        <span><i class="fas fa-video"></i> 25 Video Lectures</span>
+                        <span><i class="fas fa-code"></i> 50+ Exercises</span>
+                        <span><i class="fas fa-certificate"></i> Certificate of Completion</span>
+                    </div>
+                </div>
+
+                <div class="modules-container">
+                    <!-- Modules will be loaded here by JavaScript -->
+                </div>
+
+                <div class="video-section">
+                    <h3>Course Introduction Video</h3>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/vLnPwxZdW4Y" 
+                                title="C++ Programming Course Introduction" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="video-description">Watch this introductory video to understand what you'll learn in this comprehensive C++ course.</p>
+                </div>
+
+                <div class="certificate-section" id="certificateSection">
+                    <h3>Get Your Certificate</h3>
+                    <p>Complete all modules to unlock your certificate of completion from Legend Tech.</p>
+                    <div class="certificate-preview">
+                        <div class="certificate-placeholder">
+                            <div class="certificate-design">
+                                <div class="certificate-header">
+                                    <img src="logo.png" alt="Legend Tech Logo" class="certificate-logo">
+                                    <h4>Legend Tech</h4>
+                                </div>
+                                <div class="certificate-body">
+                                    <h5>CERTIFICATE OF COMPLETION</h5>
+                                    <p class="certificate-presented">This certificate is presented to</p>
+                                    <div class="student-name">[Your Name Here]</div>
+                                    <p class="certificate-text">for successfully completing the Comprehensive C++ Programming Course</p>
+                                    <div class="certificate-date">Date: <span id="currentDate"></span></div>
+                                </div>
+                                <div class="certificate-footer">
+                                    <div class="signature">
+                                        <div class="signature-line"></div>
+                                        <p>Legend Tech Certification Authority</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="certificate-form" id="certificateForm">
+                        <h4>Enter Your Name for Certificate</h4>
+                        <form id="nameForm">
+                            <div class="form-group">
+                                <label for="fullName">Full Name (as it should appear on certificate):</label>
+                                <input type="text" id="fullName" placeholder="Enter your full name" required>
+                            </div>
+                            <button type="submit" class="btn-generate" id="generateBtn">
+                                <i class="fas fa-certificate"></i> Generate Certificate
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="certificate-download" id="certificateDownload" style="display: none;">
+                        <h4>Your Certificate is Ready!</h4>
+                        <p>Congratulations on completing the course! Download your certificate below.</p>
+                        <div class="download-options">
+                            <button class="btn-download" id="downloadPdf">
+                                <i class="fas fa-file-pdf"></i> Download PDF Certificate
+                            </button>
+                            <button class="btn-download" id="downloadImage">
+                                <i class="fas fa-image"></i> Download as Image
+                            </button>
+                            <button class="btn-share" id="shareCertificate">
+                                <i class="fas fa-share-alt"></i> Share Achievement
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-list-check"></i> Course Modules</h3>
+                    <div class="modules-list" id="modulesList">
+                        <!-- Modules list will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-user-graduate"></i> Your Progress</h3>
+                    <div class="progress-circle">
+                        <svg width="120" height="120">
+                            <circle cx="60" cy="60" r="54" stroke="#e0e0e0" stroke-width="8" fill="none"></circle>
+                            <circle id="progressCircle" cx="60" cy="60" r="54" stroke="#4CAF50" stroke-width="8" 
+                                    fill="none" stroke-dasharray="339.292" stroke-dashoffset="339.292" 
+                                    transform="rotate(-90 60 60)"></circle>
+                        </svg>
+                        <div class="progress-percent" id="circlePercent">0%</div>
+                    </div>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Completed</span>
+                            <span class="stat-value" id="completedCount">0/25</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Time Spent</span>
+                            <span class="stat-value" id="timeSpent">0h 0m</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-trophy"></i> Achievements</h3>
+                    <div class="achievements">
+                        <div class="achievement" data-unlocked="false">
+                            <i class="fas fa-play-circle"></i>
+                            <span>Course Started</span>
+                        </div>
+                        <div class="achievement" data-unlocked="false">
+                            <i class="fas fa-code"></i>
+                            <span>First Program</span>
+                        </div>
+                        <div class="achievement" data-unlocked="false">
+                            <i class="fas fa-brain"></i>
+                            <span>OOP Master</span>
+                        </div>
+                        <div class="achievement" data-unlocked="false">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Course Completed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2024 Legend Tech. All rights reserved. This C++ course is part of Legend Tech's programming curriculum.</p>
+            <p class="footer-links">
+                <a href="#"><i class="fab fa-github"></i> Code Examples</a>
+                <a href="#"><i class="fas fa-question-circle"></i> Help Center</a>
+                <a href="#"><i class="fas fa-envelope"></i> Contact Support</a>
+            </p>
+        </footer>
+    </div>
+
+    <div class="modal" id="completionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Congratulations! 🎉</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="congrats-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <p>You've successfully completed all modules of the C++ Programming Course!</p>
+                <p>You can now generate your certificate of completion from Legend Tech.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal" id="goToCertificate">Get Certificate</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="Cplusplus.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>
