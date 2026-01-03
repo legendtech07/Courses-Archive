@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Programming Course - Legend Tech</title>
+    <link rel="stylesheet" href="java.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="course-header">
+            <div class="logo-container">
+                <img src="logo.png" alt="Legend Tech Logo" class="logo">
+                <h1>Legend Tech</h1>
+            </div>
+            <h2>Java Programming Masterclass</h2>
+            <p class="course-description">Learn Java from basics to advanced concepts with hands-on examples</p>
+            <h3>Recommended to view in desktop mode.</h3>
+        </header>
+
+        <div class="course-content">
+            <section class="video-section">
+                <h3><i class="fas fa-play-circle"></i> Course Video</h3>
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <iframe 
+                            id="courseVideo"
+                            src="https://www.youtube.com/embed/eIrMbAQSU34" 
+                            title="Java Programming Course" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    
+                    <div class="video-controls">
+                        <button id="fullscreenBtn" class="control-btn">
+                            <i class="fas fa-expand"></i> Fullscreen
+                        </button>
+                        <button id="theaterModeBtn" class="control-btn">
+                            <i class="fas fa-film"></i> Theater Mode
+                        </button>
+                        <button id="pipBtn" class="control-btn">
+                            <i class="fas fa-window-restore"></i> Picture-in-Picture
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="progress-section">
+                    <div class="progress-label">
+                        <span>Course Progress</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <button id="markCompleteBtn" class="complete-btn">
+                        <i class="fas fa-check-circle"></i> Mark as Complete
+                    </button>
+                </div>
+            </section>
+
+            <section class="certificate-section" id="certificateSection">
+                <h3><i class="fas fa-certificate"></i> Get Your Certificate</h3>
+                <p class="certificate-info">Complete the course video to unlock your certificate</p>
+                
+                <div class="name-input-section">
+                    <input 
+                        type="text" 
+                        id="userName" 
+                        placeholder="Enter your full name for the certificate"
+                        maxlength="50"
+                    >
+                    <button id="generateCertificateBtn" class="generate-btn" disabled>
+                        <i class="fas fa-award"></i> Generate Certificate
+                    </button>
+                </div>
+                
+                <div class="certificate-container" id="certificateContainer">
+                    <!-- Certificate will be generated here -->
+                </div>
+                
+                <div class="certificate-actions" id="certificateActions">
+                    <button id="downloadBtn" class="action-btn download-btn">
+                        <i class="fas fa-download"></i> Download Certificate
+                    </button>
+                    <button id="shareBtn" class="action-btn share-btn">
+                        <i class="fas fa-share-alt"></i> Share Certificate
+                    </button>
+                    <button id="printBtn" class="action-btn print-btn">
+                        <i class="fas fa-print"></i> Print Certificate
+                    </button>
+                </div>
+            </section>
+        </div>
+
+        <footer class="course-footer">
+            <p>© 2025 Legend Tech. All rights reserved.</p>
+            <p>This certificate verifies successful completion of the Java Programming Masterclass</p>
+        </footer>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content">
+            <h3><i class="fas fa-check-circle success-icon"></i> Course Completed!</h3>
+            <p>Congratulations! You've completed the Java Programming Masterclass.</p>
+            <p>You can now generate your certificate.</p>
+            <button id="modalCloseBtn" class="modal-close-btn">Continue</button>
+        </div>
+    </div>
+
+    <script src="java.js"></script>
+</body>
+</html>
